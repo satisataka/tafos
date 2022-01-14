@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+def static_page(request, menu=None, sub_menu=None):
+	"""
+	link generation to static page
+	"""
+	if menu:
+		name = menu
+		if sub_menu:
+			name += '/' + sub_menu
+	return render(request, name + '.html')

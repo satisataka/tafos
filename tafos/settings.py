@@ -31,40 +31,44 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	'main.apps.MainConfig',
+
+	'ckeditor',
+	'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.middleware.security.SecurityMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'tafos.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+	{
+		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'DIRS': [],
+		'APP_DIRS': True,
+		'OPTIONS': {
+			'context_processors': [
+				'django.template.context_processors.debug',
+				'django.template.context_processors.request',
+				'django.contrib.auth.context_processors.auth',
+				'django.contrib.messages.context_processors.messages',
+			],
+		},
+	},
 ]
 
 WSGI_APPLICATION = 'tafos.wsgi.application'
@@ -74,10 +78,10 @@ WSGI_APPLICATION = 'tafos.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': BASE_DIR / 'db.sqlite3',
+	}
 }
 
 
@@ -85,25 +89,25 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+	{
+		'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+	},
 ]
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -123,3 +127,76 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+STATIC_URL = '/static/'
+STATIC_ROOT = 'static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
+
+CKEDITOR_CONFIGS = {
+	'default': {
+		'skin': 'moono-lisa',
+		# 'skin': 'office2013',
+		'toolbar_Basic': [
+			['Source', '-', 'Bold', 'Italic']
+		],
+		'format_tags': 'h1;h2;h3;p',
+		'toolbar': 'CustomToolbarConfig',
+		'toolbar_CustomToolbarConfig': [
+			{'name': 'document', 'items': ['Undo', 'Redo', '-', 'Save', 'NewPage', 'Preview', 'Print']},
+			{'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText',
+										    '-', 'Preview', 'Maximize']},
+			'/',
+			{'name': 'basicstyles',
+			 'items': ['Format', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript',
+					   'Superscript', '-', 'RemoveFormat']},
+			{'name': 'paragraph',
+			 'items': ['NumberedList', 'BulletedList', '-', 'Blockquote',
+					   'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+			{'name': 'links', 'items': ['Link', 'Unlink']},
+			'/',
+			{'name': 'tools', 'items': [ 'ShowBlocks']},
+			{'name': 'about', 'items': ['About']},
+			'/',
+			{'name': 'other', 'items': [
+				'Image',
+				'Youtube',
+			]},
+		],
+		'image2_alignClasses': ['image-left', 'image-center', 'image-right' ],
+		'image2_captionedClass': 'image-captioned',
+		'image2_altRequired': True,
+		'image2_disableResizer': True,
+		"removePlugins": ",".join(["image"]),
+		  # put selected toolbar config here
+		# 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
+		# 'height': 291,
+		# 'width': '100%',
+		# 'filebrowserWindowHeight': 725,
+		# 'filebrowserWindowWidth': 940,
+		# 'toolbarCanCollapse': True,
+		# 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+		'tabSpaces': 4,
+		'extraPlugins': ','.join([
+			'image2',
+			'uploadimage',  # the upload image feature
+			# your extra plugins here
+			'div',
+			'autolink',
+			'autoembed',
+			'embedsemantic',
+			'autogrow',
+			'devtools',
+			'widget',
+			'lineutils',
+			'clipboard',
+			'dialog',
+			'dialogui',
+			'elementspath',
+			'youtube',
+		]),
+	}
+}

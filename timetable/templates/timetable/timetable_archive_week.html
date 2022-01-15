@@ -1,0 +1,35 @@
+{% extends "layout/basic.html" %}
+{% block breadcrumbs %}{{ block.super }}
+	{% now "W" as now_week %}
+	{% now "Y" as now_year %}
+
+
+	{% if now_week != week|date:"W" or now_year != week|date:"Y" %}
+		<li class="breadcrumb-item active" aria-current="page">
+			Неделя {{ week|date:"W" }}, {{ week|date:"Y" }}г. 
+		</li>
+	{% endif %}
+	
+{% endblock %}
+
+{% block content %}
+	
+	{% for timetable in object_list %}
+		<li>{{ timetable.day|date:"F j, Y" }}: {{ timetable.day_of_week }}</li>
+		{% for item in timetable.timetableitem_set.all %}
+			{{ item.time }}
+			{{ item.service }}
+			{{ item.text }}
+				
+		{% endfor %}
+	{% empty %}
+		На эту неделю нет Рассписания
+	{% endfor %}
+
+	{% if previous_week %}
+		<a href="{% url 'timetable' previous_week|date:"Y" previous_week|date:"W" %}"> Предыдущая неделя</a>
+	{% endif %}
+	{% if next_week %}
+		<a href="{% url 'timetable' next_week|date:"Y" next_week|date:"W" %}"> Слудующая неделя</a>
+	{% endif %}
+{% endblock %}

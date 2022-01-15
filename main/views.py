@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+
 def static_page(request, menu=None, sub_menu=None):
 	"""
 	link generation to static page

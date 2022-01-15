@@ -131,4 +131,5 @@ dmypy.json
 
 # project
 .vscode/
+db.tafos
 

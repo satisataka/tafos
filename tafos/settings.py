@@ -38,7 +38,7 @@ INSTALLED_APPS = [
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	'main.apps.MainConfig',
-
+	'timetable.apps.TimetableConfig',
 	'ckeditor',
 	'ckeditor_uploader',
 ]
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'tafos.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': BASE_DIR / 'db.sqlite3',
+		'NAME': BASE_DIR / 'db.tafos',
 	}
 }
 
@@ -146,19 +146,26 @@ CKEDITOR_CONFIGS = {
 		'format_tags': 'h1;h2;h3;p',
 		'toolbar': 'CustomToolbarConfig',
 		'toolbar_CustomToolbarConfig': [
-			{'name': 'document', 'items': ['Undo', 'Redo', '-', 'Save', 'NewPage', 'Preview', 'Print']},
-			{'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText',
-										    '-', 'Preview', 'Maximize']},
+			{'name':
+				'document',
+				'items': ['Undo', 'Redo', '-', 'Save', 'NewPage', 'Preview', 'Print']},
+			{'name':
+				'clipboard',
+				'items': ['Cut', 'Copy', 'Paste', 'PasteText', '-', 'Preview', 'Maximize']},
 			'/',
-			{'name': 'basicstyles',
-			 'items': ['Format', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript',
-					   'Superscript', '-', 'RemoveFormat']},
-			{'name': 'paragraph',
-			 'items': ['NumberedList', 'BulletedList', '-', 'Blockquote',
-					   'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+			{'name':
+				'basicstyles',
+				'items': [
+					'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript',
+					'Superscript', '-', 'RemoveFormat']},
+			{'name':
+				'paragraph',
+				'items': [
+					'NumberedList', 'BulletedList', '-', 'Blockquote',
+					'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
 			{'name': 'links', 'items': ['Link', 'Unlink']},
 			'/',
-			{'name': 'tools', 'items': [ 'ShowBlocks']},
+			{'name': 'tools', 'items': ['ShowBlocks']},
 			{'name': 'about', 'items': ['About']},
 			'/',
 			{'name': 'other', 'items': [
@@ -166,12 +173,12 @@ CKEDITOR_CONFIGS = {
 				'Youtube',
 			]},
 		],
-		'image2_alignClasses': ['image-left', 'image-center', 'image-right' ],
+		'image2_alignClasses': ['image-left', 'image-center', 'image-right'],
 		'image2_captionedClass': 'image-captioned',
 		'image2_altRequired': True,
 		'image2_disableResizer': True,
 		"removePlugins": ",".join(["image"]),
-		  # put selected toolbar config here
+		# put selected toolbar config here
 		# 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
 		# 'height': 291,
 		# 'width': '100%',

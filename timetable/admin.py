@@ -39,13 +39,11 @@ class TimeTableAdmin(admin.ModelAdmin):
 	list_display = ['day', 'day_of_week', 'view_service_link']
 	list_filter = ['day']
 	ordering = ['-day']
-	inlines = [
-		TimeTableItemInline,
-	]
+	inlines = [TimeTableItemInline]
 
 	def view_service_link(self, obj):
 		count = obj.timetableitem_set.count()
-		url = reverse("admin:main_listchurchservice_changelist")
+		url = reverse("admin:timetable_listchurchservice_changelist")
 		if count % 10 == 0 or 11 <= count % 100 <= 14 or 5 <= count % 10 <= 9:
 			return format_html('<a href="{}">{} cлужб</a>', url, count)
 		elif 2 <= count % 10 <= 4:

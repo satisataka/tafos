@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 	'django.contrib.staticfiles',
 	'main.apps.MainConfig',
 	'timetable.apps.TimetableConfig',
+	'nav.apps.NavConfig',
 	'ckeditor',
 	'ckeditor_uploader',
 ]

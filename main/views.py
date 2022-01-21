@@ -9,4 +9,4 @@ def static_page(request, menu=None, sub_menu=None):
 		name = menu
 		if sub_menu:
 			name += '/' + sub_menu
-	return render(request, name + '.html')
+	return render(request, 'main/' + name + '.html')

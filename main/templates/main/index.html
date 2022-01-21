@@ -1,14 +1,12 @@
 {% extends "layout/basic.html" %}
 
-
+{% block title_category %}{% endblock %}
 {% block content %}
 <div class="content-container">
 	<div class='container-xxl'>
 		<article>
-			
+
 			{% for bb in bbs %}
-
-
 			<div>
 				<h2> <a href="{% url 'detail' pk=bb.pk %}"> {{ bb.title_and_price }}</a></h2>
 				<p>{{ bb.content|safe }}</p>
@@ -17,7 +15,7 @@
 			</div>
 			{% endfor %}
 
-		</article>	
+		</article>
 	</div>
 
 <nav>
@@ -30,7 +28,7 @@
 		{% for p in page.paginator.page_range %}
 			{% if page.number == p %}
 				<li class="page-item disabled"><span class="page-link">{{ p }}</span></li>
-		
+
 			{% elif p == 1 %}
 				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
 				{% if page.number > 4 %}
@@ -44,7 +42,7 @@
 				{% if page.number|add:3 < page.paginator.num_pages %}
 					<li class="page-item disabled"><span class="page-link page-ellipsis-link">...</span></li>
 				{% endif %}
-			
+
 				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
 			{% endif %}
 		{% endfor %}
@@ -65,7 +63,7 @@
 	{% for p in page.paginator.page_range %}
 		{% if page.number == p %}
 			<li>{{ p }}</li>
-		
+
 		{% elif p == 1 %}
 			<li>
 				<a href="?page={{ p }}">{{ p }}</a>
@@ -96,7 +94,7 @@
 	&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="?page={{ page.next_page_number }}">Вперед</a>
 	{% endif %}
-	
+
 </div>-->
 
 {% endblock %}

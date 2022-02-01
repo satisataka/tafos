@@ -1,0 +1,84 @@
+{% extends "layout/basic.html" %}
+{% block title %} Новости {% endblock %}
+{% block title_category %}{{ block.super }} Новости Обители {% endblock %}
+
+{% block breadcrumbs %}
+	{{ block.super }}
+	{% if active_menu.name %}
+	<li class="breadcrumb-item active" aria-current="page">
+			{{ active_menu.name }}
+	</li>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+	<div class='container-xxl'>
+		<article>
+			{% if active_rubric %}
+				<h2> <a href="{% url 'all_articles' %}"> Все </a></h2>
+			{% else %}
+				<h2> Все </h2>
+			{% endif %}
+
+			{% for rubric in rubric %}
+				{% if active_rubric.slug == rubric.slug %}
+					<h2> {{ rubric.name }} </h2>
+				{% else %}
+					<h2> <a href="{% url 'rubric_articles' slug=rubric.slug %}"> {{ rubric.name }}</a></h2>
+				{% endif %}
+			{% endfor %}
+
+
+			{% for article in all_articles %}
+				<div>
+					<h2> <a href="{% url 'detail_article' slug=article.slug %}"> {{ article.title }}</a></h2>
+					<p>{{ article.description }}</p>
+
+					<p>{{ article.published|date:"d.m.Y H:i:s" }}</p>
+				</div>
+					<li>{{ article.published|date }} - {{ article.title }}</li>
+			{% empty %}
+					<li>No articles yet.</li>
+			{% endfor %}
+			</ul>
+
+		</article>
+	</div>
+
+<nav>
+	<ul class="pagination pagination-sm flex-wrap">
+		{% if page_obj.has_previous %}
+			<li class="page-item">
+				<a class="page-link page-next-link" href="?page={{ page_obj.previous_page_number }}">&lt; Назад</a>
+			</li>
+		{% endif %}
+		{% for p in page_obj.paginator.page_range %}
+			{% if page_obj.number == p %}
+				<li class="page-item disabled"><span class="page-link">{{ p }}</span></li>
+
+			{% elif p == 1 %}
+				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+				{% if page_obj.number > 4 %}
+					<li class="page-item disabled"><span class="page-link page-ellipsis-link">...</span></li>
+				{% endif %}
+
+			{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+
+			{% elif p == page_obj.paginator.num_pages %}
+				{% if page_obj.number|add:3 < page_obj.paginator.num_pages %}
+					<li class="page-item disabled"><span class="page-link page-ellipsis-link">...</span></li>
+				{% endif %}
+
+				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+			{% endif %}
+		{% endfor %}
+		{% if page_obj.has_next %}
+			<li class="page-item">
+				<a class="page-link page-next-link" href="?page={{ page_obj.next_page_number }}">Далее &gt;</a>
+			</li>
+		{% endif %}
+	</ul>
+</nav>
+{% endblock %}

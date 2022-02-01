@@ -1,0 +1,35 @@
+{% extends "layout/basic.html" %}
+{% block title %} Новости {% endblock %}
+{% block title_category %}{{ block.super }} {{ active_menu.name }} {% endblock %}
+
+{% block content %}
+
+
+
+
+{% load static %}
+<div class='post-content'>
+	{% for item in menu_items %}
+		<div class="cards row mb-4">
+			<div class="wrapper exmp2 col-2 " style="background-image: url('{% static "main/bg_1.jpg" %}');"></div>
+
+				<div class="col ">
+					<div class="mx-3 my-2">
+					<div>
+
+					<h3 class="title"><a class="title stretched-link" href="{{item.slug}}">{{ item.title }}</a></h3>
+					<p class="descrip">{{ item.description }}</p>
+					</div>
+					<div class="mt-auto">
+
+					</div>
+				</div>
+		</div>
+		</div>
+	{% empty %}
+			No articles yet.
+	{% endfor %}
+</div>
+
+
+{% endblock %}

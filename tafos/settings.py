@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 	'main.apps.MainConfig',
 	'timetable.apps.TimetableConfig',
 	'nav.apps.NavConfig',
+	'articles.apps.ArticlesConfig',
 	'ckeditor',
 	'ckeditor_uploader',
 ]
@@ -137,6 +138,7 @@ STATIC_ROOT = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
+
 CKEDITOR_CONFIGS = {
 	'default': {
 		'skin': 'moono-lisa',
@@ -171,7 +173,7 @@ CKEDITOR_CONFIGS = {
 			'/',
 			{'name': 'other', 'items': [
 				'Image',
-				'Youtube',
+
 			]},
 		],
 		'image2_alignClasses': ['image-left', 'image-center', 'image-right'],
@@ -181,8 +183,8 @@ CKEDITOR_CONFIGS = {
 		"removePlugins": ",".join(["image"]),
 		# put selected toolbar config here
 		# 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
-		# 'height': 291,
-		# 'width': '100%',
+		'height': 500,
+		'width': 1000,
 		# 'filebrowserWindowHeight': 725,
 		# 'filebrowserWindowWidth': 940,
 		# 'toolbarCanCollapse': True,
@@ -204,7 +206,9 @@ CKEDITOR_CONFIGS = {
 			'dialog',
 			'dialogui',
 			'elementspath',
-			'youtube',
+
 		]),
 	}
 }
+
+

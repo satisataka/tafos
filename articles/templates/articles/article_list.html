@@ -1,0 +1,125 @@
+{% extends "layout/basic.html" %}
+{% block title %} Новости {% endblock %}
+{% block title_category %}{{ block.super }} Новости Обители {% endblock %}
+
+{% block breadcrumbs %}
+	{{ block.super }}
+	{% if active_rubric.slug %}
+	<li class="breadcrumb-item active" aria-current="page">
+			{{ active_rubric.name }}
+	</li>
+	{% endif %}
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="rubrics ">
+	{% if active_rubric %}
+		<a class="btn-rubric mb-2" href="{% url 'all_articles' %}" role="button">Все</a>
+	{% else %}
+		<span a class="btn-rubric disabled mb-2" role="button">Все</span>
+	{% endif %}
+
+	{% for rubric in rubric %}
+		{% if active_rubric.slug == rubric.slug %}
+			<span class="btn-rubric disabled mb-2" role="button">{{ rubric.name }}</span>
+		{% else %}
+			<a class="btn-rubric mb-2" href="{% url 'rubric_articles' slug=rubric.slug %}" role="button">{{ rubric.name }}</a>
+		{% endif %}
+	{% endfor %}
+</div>
+
+
+
+{% load static %}
+<div class='post-content'>
+	{% for article in all_articles %}
+		<div class="cards row mb-3">
+			<div class="wrapper exmp2 col-2 " style="background-image: url('{% static "main/bg_1.jpg" %}');"></div>
+			<div class="col ps-3 pe-2 pb-2 pt-3 pt-md-2 ">
+				<div>
+				<h5 class="rubric">{{ article.rubric }}</h5>
+				<h3 class="title"><a class="title stretched-link" href="{% url 'detail_article' slug=article.slug %}">{{ article.title }}</a></h3>
+				<p class="descrip">{{ article.description }}</p>
+				</div>
+				<div class="mt-auto">
+				<p class="pub">{{ article.published|date:"d.m.Y H:i" }}</p>
+				</div>
+			</div>
+		</div>
+	{% empty %}
+			No articles yet.
+	{% endfor %}
+</div>
+
+
+{% if page_obj.has_previous or page_obj.has_next %}
+<div class='paginator max'>
+<nav>
+	<ul class="pagination pagination-sm flex-wrap">
+		{% if page_obj.has_previous %}
+			<li class="page-item">
+				<a class="page-link page-next-link" href="?page={{ page_obj.previous_page_number }}">&lt; Назад</a>
+			</li>
+		{% endif %}
+		{% for p in page_obj.paginator.page_range %}
+			{% if page_obj.number == p %}
+				<li class="page-item disabled"><span class="page-link">{{ p }}</span></li>
+
+			{% elif p == 1 %}
+				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+				{% if page_obj.number > 4 %}
+					<li class="page-item disabled"><span class="page-link page-ellipsis-link">...</span></li>
+				{% endif %}
+
+			{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+
+			{% elif p == page_obj.paginator.num_pages %}
+				{% if page_obj.number|add:3 < page_obj.paginator.num_pages %}
+					<li class="page-item disabled"><span class="page-link page-ellipsis-link">...</span></li>
+				{% endif %}
+
+				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+			{% endif %}
+		{% endfor %}
+		{% if page_obj.has_next %}
+			<li class="page-item">
+				<a class="page-link page-next-link" href="?page={{ page_obj.next_page_number }}">Далее &gt;</a>
+			</li>
+		{% endif %}
+	</ul>
+</nav>
+</div>
+{% endif %}
+{% if page_obj.has_previous or page_obj.has_next %}
+<div class='paginator min'>
+<nav>
+	<ul class="pagination pagination-sm flex-wrap">
+		{% if page_obj.has_previous %}
+			<li class="page-item">
+				<a class="page-link page-next-link" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+			</li>
+		{% endif %}
+		{% for p in page_obj.paginator.page_range %}
+			{% if page_obj.number == p %}
+				<li class="page-item disabled"><span class="page-link">{{ p }}</span></li>
+			{% elif p == 1 %}
+				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+			{% elif p == page_obj.paginator.num_pages %}
+				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+			{% endif %}
+		{% endfor %}
+		{% if page_obj.has_next %}
+			<li class="page-item">
+				<a class="page-link page-next-link" href="?page={{ page_obj.next_page_number }}">&gt;</a>
+			</li>
+		{% endif %}
+	</ul>
+</nav>
+</div>
+
+{% endif %}
+{% endblock %}

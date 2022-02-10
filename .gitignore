@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 
-# project
+# tafos project
 .vscode/
 db.tafos
 media/

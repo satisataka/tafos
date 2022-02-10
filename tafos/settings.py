@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
-
+from django.conf.locale.ru import formats as ru_formats
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,9 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	'django.contrib.contenttypes',
+	'grappelli.dashboard',
+	'grappelli',
+	'filebrowser',
+
 	'django.contrib.admin',
 	'django.contrib.auth',
-	'django.contrib.contenttypes',
+
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
@@ -41,8 +47,7 @@ INSTALLED_APPS = [
 	'timetable.apps.TimetableConfig',
 	'nav.apps.NavConfig',
 	'articles.apps.ArticlesConfig',
-	'ckeditor',
-	'ckeditor_uploader',
+	'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -119,18 +124,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+DATE_FORMAT = 'j F Y'
+TIME_FORMAT = 'H:i'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CKEDITOR_UPLOAD_PATH = "uploads/"
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
@@ -139,7 +136,31 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
 
-CKEDITOR_CONFIGS = {
+'''QUILL_CONFIGS = {
+	'default': {
+		'theme': 'snow',
+		'modules': {
+			'syntax': True,
+			'toolbar': [
+				[
+					{'font': []},
+					{'header': []},
+					{'align': []},
+					'bold', 'italic', 'underline', 'strike', 'blockquote',
+					{'color': []},
+					{'background': []},
+				],
+				['code-block', 'link'],
+				['clean'],
+			]
+		},
+
+		'placeholder': 'Начните писать статью...',
+	}
+}'''
+
+
+'''CKEDITOR_CONFIGS = {
 	'default': {
 		'skin': 'moono-lisa',
 		# 'skin': 'office2013',
@@ -173,14 +194,30 @@ CKEDITOR_CONFIGS = {
 			'/',
 			{'name': 'other', 'items': [
 				'Image',
-
+				'Youtube',
+				'Embedsemantic',
 			]},
+			{'name': 'insert',
+			 'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak']},
 		],
 		'image2_alignClasses': ['image-left', 'image-center', 'image-right'],
 		'image2_captionedClass': 'image-captioned',
 		'image2_altRequired': True,
 		'image2_disableResizer': True,
 		"removePlugins": ",".join(["image"]),
+
+		'embed_provider': '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',
+
+		# "resize_enabled": False,
+		# "allowedContent": True,
+		# Youtube
+		"youtube_disabled_fields": ['txtEmbed', 'chkAutoplay'],
+		# Показывать похожие видео
+		"youtube_related": False,
+		# Отзывчивое видео
+		"youtube_responsive": True,
+
+
 		# put selected toolbar config here
 		# 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
 		'height': 500,
@@ -196,19 +233,226 @@ CKEDITOR_CONFIGS = {
 			# your extra plugins here
 			'div',
 			'autolink',
+			'embed',
 			'autoembed',
-			'embedsemantic',
+
 			'autogrow',
 			'devtools',
+
 			'widget',
 			'lineutils',
 			'clipboard',
 			'dialog',
 			'dialogui',
 			'elementspath',
-
+			'youtube',
 		]),
 	}
+}'''
+
+
+'''def test_2():
+
+	for dirpath, dirnames, filenames in os.walk(os.path.join('.', MEDIA_ROOT)):
+		for filename in filenames:
+			a = os.path.join(dirpath, filename)
+			a_list = a.split('\\')
+			a = '/'.join(a_list[1:])
+
+			return str('/' + a)
+
+data = [
+	{
+		"src": "/media/article_cover/2022/02/02/Церковь_на_полит_технической_выставке.jpg",
+		"title": "a galerie test"
+	},
+	{
+		"src": "/media/uploads/2022/02/03/1939.png",
+		"title": "a galerie test"
+	},
+	{
+		"src": test_2(),
+		"title": "a galerie test"
+	}
+]'''
+
+'''SUMMERNOTE_CONFIG = {
+	# Using SummernoteWidget - iframe mode, default
+	'iframe': True,
+
+	# Or, you can set it to `False` to use SummernoteInplaceWidget by default - no iframe mode
+	# In this case, you have to load Bootstrap/jQuery sources and dependencies manually.
+	# Use this when you're already using Bootstrap/jQuery based themes.
+
+
+	# You can put custom Summernote settings
+	'summernote': {
+		# As an example, using Summernote Air-mode
+		'airMode': False,
+		'removeStyles': True,
+		# Change editor size
+		'width': '1010',
+		'height': '1000',
+		'focus': True,
+		'maxWidth': '1000',
+		'maxHeight': None,
+		'blockquoteBreakingLevel': 1,
+		# Use proper language setting automatically (default)
+		'placeholder': 'Начните писать статью...',
+		'imageTitle': {
+			'specificAltField': True,
+		},
+
+		'captionIt': {
+			'icon': '<i class="note-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14"><path d="M 8.781,11.11 7,11.469 7.3595,9.688 8.781,11.11 Z M 7.713,9.334 9.135,10.7565 13,6.8915 11.5775,5.469 7.713,9.334 Z M 6.258,9.5 8.513,7.12 7.5,5.5 6.24,7.5 5,6.52 3,9.5 6.258,9.5 Z M 4.5,5.25 C 4.5,4.836 4.164,4.5 3.75,4.5 3.336,4.5 3,4.836 3,5.25 3,5.6645 3.336,6 3.75,6 4.164,6 4.5,5.6645 4.5,5.25 Z m 1.676,5.25 -4.176,0 0,-7 9,0 0,1.156 1,0 0,-2.156 -11,0 0,9 4.9845,0 0.1915,-1 z"/></svg></i>',
+			'figureClass': '',
+			'figcaptionClass': '',
+			'captionText': 'Введите подпись для картинки...'
+		},
+
+		'toolbar': [
+			['basic', ['undo', 'redo']],
+			['style', ['style']],
+			['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+			['para', ['paragraph']],
+
+			['insert', ['link', 'picture', 'video']],
+			['view', ['fullscreen', 'codeview', 'help']],
+			['extensions', ['summernoteGallery']],
+		],
+
+
+		'summernoteGallery': {
+			'source': {
+				'data': data,
+
+			},
+			'modal': {
+				'loadOnScroll': True,
+				'maxHeight': 300,
+				'title': "La galerie d'images",
+				'close_text': 'Fermer',
+				'ok_text': 'Ajouter',
+				'selectAll_text': 'Sélectionner Tout',
+				'deselectAll_text': 'Désélectionner Tout',
+				'noImageSelected_msg': 'No image was selected, please select one by clicking it!',
+				'buttonLabel': '<i class="fa fa-file-image-o"></i> Gallery'
+			}
+		},
+
+
+		'styleTags': [
+			'p',
+			{'title': 'Blockquote', 'tag': 'blockquote', 'className': 'blockquote1488', 'value': 'blockquote'},
+			'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+		],
+
+		'popover': {
+			'image': [
+				['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+				['float', ['floatLeft', 'floatRight', 'floatNone']],
+				['remove', ['removeMedia']],
+				['custom', ['captionIt', 'imageTitle']],
+			],
+		},
+
+
+		# You can also add custom settings for external plugins
+		'print': {
+			'stylesheetUrl': '/some_static_folder/printable.css',
+		},
+		'codemirror': {
+			'mode': 'htmlmixed',
+			'lineNumbers': 'true',
+			# You have to include theme file in 'css' or 'css_for_inplace' before using it.
+			'theme': 'monokai',
+		},
+
+
+	},
+
+
+	'css': (
+		'//cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/theme/monokai.min.css',
+
+		# os.path.join(STATIC_URL, 'summernote/summernote-bs5.min.css'),
+	),
+	'css_for_inplace': (
+		# os.path.join(STATIC_URL, 'summernote/summernote-bs5.min.css'),
+	),
+
+
+
+	'js_for_inplace': (
+		os.path.join(STATIC_URL, 'summernote/plugin/summernote-image-captionit.js'),
+		os.path.join(STATIC_URL, 'summernote/plugin/summernote-image-title.js'),
+		os.path.join(STATIC_URL, 'summernote/plugin/summernote-gallery.min.js'),
+	),
+	'js': (
+		os.path.join(STATIC_URL, 'summernote/plugin/summernote-image-captionit.js'),
+		os.path.join(STATIC_URL, 'summernote/plugin/summernote-image-title.js'),
+		os.path.join(STATIC_URL, 'summernote/plugin/summernote-gallery.min.js'),
+	),
+}'''
+
+
+FILEBROWSER_DIRECTORY = 'uploads/'
+DIRECTORY = ''
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+TINYMCE_DEFAULT_CONFIG = {
+	'placeholder': 'Начните статью...',
+	"relative_urls": False,
+	"remove_script_host": False,
+	"convert_urls": True,
+	'cleanup_on_startup': True,
+	'custom_undo_redo_levels': 20,
+	'theme': 'silver',
+	'resize': True,
+	'min_height': 500,
+	'max_height': 800,
+	'width': 1000,
+	'style_formats': [
+		{'title': 'Bold text', 'inline': 'b'},
+		{'title': 'Red text', 'inline': 'span', 'styles': {'color': '#ff0000'}},
+		{'name': 'my-inline', 'title': 'My inline', 'inline': 'span', 'classes': [ 'my-inline' ]},
+		 { 'title': 'Blockquote', 'format': 'blockquote' },
+		 { 'title': 'Paragraph', 'format': 'p' },
+	],
+	'plugins': '''
+			textcolor save link image media preview codesample contextmenu
+			table code lists fullscreen  insertdatetime  nonbreaking
+			contextmenu directionality searchreplace wordcount visualblocks
+			visualchars code fullscreen autolink lists  charmap print  hr
+			anchor pagebreak autoresize
+			''',
+	'toolbar1': '''
+			bold italic underline | fontselect,
+			fontsizeselect  | forecolor backcolor | alignleft alignright |
+			aligncenter alignjustify | indent outdent | bullist numlist table |
+			| link image media | codesample |
+			''',
+	'style_formats_autohide': True,
+	'contextmenu': 'formats | link image',
+	'menubar': True,
+	'statusbar': True,
+
+
+}
+TINYMCE_FILEBROWSER = True
+
+# setting FileBrowser
+FILEBROWSER_NORMALIZE_FILENAME = True
+FILEBROWSER_CONVERT_FILENAME = True
+
+FILEBROWSER_EXTENSIONS = {
+	'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff'],
+	'Document': ['.pdf', '.doc', '.rtf', '.txt', '.xls', '.csv'],
+	'Video': [],
+	'Audio': []
 }
 
-
+GRAPPELLI_INDEX_DASHBOARD = 'tafos.dashboard.CustomIndexDashboard'
+GRAPPELLI_ADMIN_TITLE = 'Введенский храм'
+GRAPPELLI_CLEAN_INPUT_TYPES = False

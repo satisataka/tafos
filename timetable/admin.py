@@ -18,6 +18,8 @@ class CustomBarModelForm(forms.ModelForm):
 
 
 class TimeTableItemInline(admin.StackedInline):
+	classes = ('grp-collapse grp-open',)
+	inline_classes = ('grp-collapse grp-open',)
 	form = CustomBarModelForm
 	model = TimeTableItem
 	formfield_overrides = {

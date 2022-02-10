@@ -4,57 +4,33 @@
 {% block title_category %}{{ block.super }} {{ article.rubric }} {% endblock %}
 {% block breadcrumbs %}
 	{{ block.super }}
-	<li class="breadcrumb-item active" aria-current="page">
+	<li class="breadcrumb-item active d-inline-block text-truncate" style="max-width: 300px;" aria-current="page">
 		{{ article.title }}
 	</li>
 {% endblock %}
 
 {% block content %}
 <div class='post-content'>
-			<h4>{{ article.rubric }}</h3>
-			<h2>{{ article.title }}</h2>
-			<p>{{ article.published|date:"H:i, d.m.Y " }}</p>
-			Автор: {{ article.author }}
 
-			{{ article.content|safe }}
+	<h1 class='text-center title-article my-3'>{{ article.title }}</h1>
+
+	<div class="row m-3">
+		<time class="col-auto mx-auto time">{{ article.published|date:"H:i, d E Yг." }}</time>
+	</div>
 
 
+	{% if article.cover %}
+	<div class="cover text-center p-3 my-3">
+		<img alt="Обложка статьи" src="{{ article.cover.url }}"	>
+	</div>
+	{% endif %}
 
+
+	{{ article.content |safe }}
+	{% if article.author %}
+	<div class="row mt-3 mb-2 me-1">
+		<div class='col-auto ms-auto autor'>Автор: {{ article.author }}</div>
+	</div>
+	{% endif %}
 </div>
-
-<nav>
-	<ul class="pagination pagination-sm flex-wrap">
-		{% if page_obj.has_previous %}
-			<li class="page-item">
-				<a class="page-link page-next-link" href="?page={{ page_obj.previous_page_number }}">&lt; Назад</a>
-			</li>
-		{% endif %}
-		{% for p in page_obj.paginator.page_range %}
-			{% if page.number == p %}
-				<li class="page-item disabled"><span class="page-link">{{ p }}</span></li>
-
-			{% elif p == 1 %}
-				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
-				{% if page_obj.number > 4 %}
-					<li class="page-item disabled"><span class="page-link page-ellipsis-link">...</span></li>
-				{% endif %}
-
-			{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
-				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
-
-			{% elif p == page_obj.paginator.num_pages %}
-				{% if page_obj.number|add:3 < page_obj.paginator.num_pages %}
-					<li class="page-item disabled"><span class="page-link page-ellipsis-link">...</span></li>
-				{% endif %}
-
-				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
-			{% endif %}
-		{% endfor %}
-		{% if page_obj.has_next %}
-			<li class="page-item">
-				<a class="page-link page-next-link" href="?page={{ page_obj.next_page_number }}">Далее &gt;</a>
-			</li>
-		{% endif %}
-	</ul>
-</nav>
 {% endblock %}

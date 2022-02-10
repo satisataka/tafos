@@ -51,7 +51,7 @@ class TimeTableItem(models.Model):
 	text = models.TextField(blank=True, verbose_name='Дополнительная информация')
 
 	def __str__(self):
-		return str(self.date.day.strftime("%d.%m.%y"))
+		return self.service.name + ' (' + self.time.strftime("%H:%M") + ')'
 
 	class Meta:
 		verbose_name_plural = 'Богослужения'

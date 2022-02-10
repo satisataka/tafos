@@ -12,7 +12,7 @@ class Menu(models.Model):
 		verbose_name = 'Меню'
 		verbose_name_plural = 'Меню'
 		ordering = ['order', 'name']
-
+	"""
 	def save(self, *args, **kwargs):
 		'''
 		Расставляем по позиции MenuItem, после сохранения
@@ -24,6 +24,10 @@ class Menu(models.Model):
 			item.order = current
 			item.save()
 			current += 1
+	"""
+
+	def __str__(self):
+		return self.name
 
 
 class MenuItem(models.Model):
@@ -38,3 +42,6 @@ class MenuItem(models.Model):
 		verbose_name = 'Пункт меню'
 		verbose_name_plural = 'Пункты меню'
 		ordering = ['order', 'title']
+
+	def __str__(self):
+		return self.title

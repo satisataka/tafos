@@ -12,25 +12,49 @@
 	{% endif %}
 
 {% endblock %}
-{% block title_category %}{{ block.super }} Рассписание {% endblock %}
+{% block title_category %}{{ block.super }}Рассписание{% endblock %}
 {% block content %}
 
 	{% for timetable in object_list %}
-		<li>{{ timetable.day|date:"F j, Y" }}: {{ timetable.day_of_week }}</li>
-		{% for item in timetable.timetableitem_set.all %}
-			{{ item.time }}
-			{{ item.service }}
-			{{ item.text }}
+	<div class="container timetable mb-3 ">
+		<div class="row">
+			<div class="day col text-center fw-bold fs-4 pb-2 mt-3">
+				{{ timetable.day_of_week }}, {{ timetable.day|date:"j E" }}
+			</div>
+		</div>
 
+		{% for item in timetable.timetableitem_set.all %}
+			<div class="info row pt-3 pb-3">
+				<div class="time col-6 col-md-1 text-center fw-bold">{{ item.time }}</div>
+				<div class="service col-6 col-md-2 text-center fw-bold">{{ item.service }}</div>
+				{% if item.text %}
+					<div class="text col col-md-9 m-2 m-md-0">{{ item.text }}</div>
+				{% endif %}
+			</div>
 		{% endfor %}
+</div>
 	{% empty %}
-		На эту неделю нет Рассписания
+		<div class="row ">
+			<div class="col text-center fw-bold fs-4 mb-3 mt-2 ">
+				На эту неделю нет Рассписания
+			</div>
+		</div>
+
 	{% endfor %}
 
-	{% if previous_week %}
-		<a href="{% url 'timetable' previous_week|date:"Y" previous_week|date:"W" %}"> Предыдущая неделя</a>
-	{% endif %}
-	{% if next_week %}
-		<a href="{% url 'timetable' next_week|date:"Y" next_week|date:"W" %}"> Слудующая неделя</a>
-	{% endif %}
+
+
+	<div class="row">
+		<div class="col-auto me-md-auto ms-md-5 mb-1">
+		{% if previous_week %}
+			<a class="btn previous-week" href="{% url 'timetable' previous_week|date:"Y" previous_week|date:"W" %}">&lt; Предыдущая неделя</a>
+		{% endif %}
+		</div>
+		<div class="col-auto ms-auto ms-md-0 me-md-5 mb-1">
+		{% if next_week %}
+			<a class="btn next-week" href="{% url 'timetable' next_week|date:"Y" next_week|date:"W" %}">Следующая неделя &gt;</a>
+		{% endif %}
+		</div>
+	</div>
+
 {% endblock %}

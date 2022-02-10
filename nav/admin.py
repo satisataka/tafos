@@ -3,6 +3,8 @@ from .models import Menu, MenuItem
 from django import forms
 from django.core.exceptions import ValidationError
 
+from grappelli.forms import GrappelliSortableHiddenMixin
+
 
 class CustomMenuItemForm(forms.BaseInlineFormSet):
 	def clean(self):
@@ -25,9 +27,13 @@ class CustomMenuItemForm(forms.BaseInlineFormSet):
 			raise ValidationError(errors)
 
 
-class MenuItemInline(admin.StackedInline):
+class MenuItemInline(GrappelliSortableHiddenMixin, admin.StackedInline):
 	model = MenuItem
 	formset = CustomMenuItemForm
+	fields = ('title', 'slug', 'description', 'hide', 'order')
+	sortable_field_name = "order"
+
+	inline_classes = ('grp-collapse grp-open',)
 
 	def get_extra(self, request, obj=None, **kwargs):
 		"""
@@ -38,9 +44,6 @@ class MenuItemInline(admin.StackedInline):
 		if obj:
 			return 0
 		return extra
-
-	ordering = ['order']
-
 
 class MenuAdmin(admin.ModelAdmin):
 	inlines = [MenuItemInline]

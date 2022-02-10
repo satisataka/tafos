@@ -33,28 +33,31 @@ header{
 
 .btn-return{
 	display: inline-block;
-	background-color: var(--main-green-color-mid);
+	background-color: var(--main-green-color-light);
 	line-height: 50px;
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-
 	font-size: 3em;
 	text-align: center;
 	font-weight: normal;
 	font-style: normal;
 	font-size: 2em;
 	color: var(--main-sand-color);
-
 	position: fixed;
 	bottom: 30px;
 	right: 30px;
 	transition: background-color .3s,
 		opacity .5s, visibility .5s;
-
 	z-index: 1000;
 	opacity: 0;
-  visibility: ч;
+	visibility: ч;
+}
+.btn-return:focus,
+.btn-return:active,
+.btn-return:hover{
+	background-color: var(--main-green-color-mid);
+	color: var(--main-sand-color);
 }
 
 #navbar{
@@ -72,13 +75,18 @@ header{
 	font-weight: 600;
 	padding-left: 18px !important;
 	padding-right: 18px !important;
-	padding-bottom: 9px !important;
-	padding-top: 8px !important;
+
 }
+.nav-link:focus,
+.nav-link:active
 .nav-link:hover{
 	background-color: #fff;
 	border-radius: 5px;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
 }
+
 .nav-link.show{
 	background-color: #fff;
 	border-radius: 5px;
@@ -90,6 +98,8 @@ header{
 	padding: 0px;
 	transition: 0.5s;
 }
+.navbar-brand:focus,
+.navbar-brand:active,
 .navbar-brand:hover{
 	background: var(--main-green-color-mid);
 	-webkit-box-shadow: 0px 0px 15px 4px rgba(34, 60, 80, 0.2) !important;
@@ -121,7 +131,7 @@ a.disabled_butt{
 .navbar .dropdown-menu .dropdown-item:active,
 .navbar .dropdown-menu .dropdown-item:hover,
 .navbar .dropdown-menu .dropdown-item:focus{
-	background-color: #f1ecdc!important;
+	background-color: #f1ecdc;
 }
 nav.navbar .dropdown:hover > .dropdown-menu {
 	display: block;
@@ -249,7 +259,10 @@ footer .soсial-net .fa-instagram{
 .btn-rubric:hover,
 .btn-rubric:focus,
 .btn-rubric:active{
-	background: var(--main-green-color-mid) !important;
+	background: var(--main-green-color-light) !important;
+	-webkit-box-shadow: 0px 0px 15px 4px rgba(34, 60, 80, 0.2) !important;
+	-moz-box-shadow: 0px 0px 15px 4px rgba(34, 60, 80, 0.2) !important;
+	box-shadow: 0px 0px 15px 4px rgba(34, 60, 80, 0.2) !important;
 	color: var(--main-sand-color);
 }
 .btn-rubric:not(.disabled):hover{
@@ -261,6 +274,7 @@ footer .soсial-net .fa-instagram{
 	color: var(--main-sand-color) !important;
 	background: var(--main-green-color-light) !important;
 	cursor: default;
+	opacity: 1;
 }
 .content-container{
 	background: #f4f2ec !important;
@@ -325,7 +339,7 @@ article .post-caption{
 	background: var(--main-green-color-mid) !important;
 }
 .cards{
-	min-height: 200px;
+	min-height: 150px;
 	border-radius: 8px;
 	position: relative;
 	z-index: 0;
@@ -344,10 +358,10 @@ article .post-caption{
 }
 .cards:hover .wrapper{
 	opacity: 0.75;
-  transform: scale(1.05);
+	transform: scale(1.05);
 }
 .cards .col:hover,
-.cards .col:active,
+
 .cards .col:focus{
 	background: #f4f2ec;
 }
@@ -358,7 +372,7 @@ article .post-caption{
 	display: block;
 	min-height: 200px;
 	width: 35%;
-	border-radius: 8px 0px 0px 8px;
+
 }
 .exmp2 {
 	background-repeat: no-repeat;
@@ -393,13 +407,11 @@ article .post-caption{
 .paginator .container{
 	padding: auto;
 }
-
 .paginator {
 	height: 2em;
 	position: relative
 }
 .paginator ul {
-
 	margin: 0;
 	position: absolute;
 	top: 50%;
@@ -435,34 +447,111 @@ blockquote:after {
 	right: -30px;
 	bottom: -85px;
 }
-.main-content figure.image-captioned{
-	margin: 0 auto;
-  max-width: 750px;
-  border-radius: 5px;
-  overflow: hidden;
-  position: relative;
-	background-color: #f4f2ec;
+
+.post-content figure.image-captioned{
+	margin: 3% auto;
+	max-width: 750px;
+	border-radius: 5px;
+	overflow: hidden;
+	position: relative;
 }
-.main-content img{
+.post-content img{
 	max-width: 750px;
 	width: 100%;
 	height: auto;
 	position: relative;
 	z-index: 1;
 }
+.post-content figure.image-captioned figcaption{
+	text-align: center;
+	background: #f4f2ec;
+}
+.post-content .autor,
+.post-content .time{
+	font-size: 15px;
+	color: var(--main-green-color-light);
+	font-weight: 700;
+	white-space: nowrap;
+}
 
+
+.post-content .title{
+	font-weight: 700;
+}
+.post-content .title-article{
+	font-weight: 700;
+
+
+}
+.post-content .cover{
+	background: #f4f2ec;
+	border-radius: 10px;
+}
+.post-content .cover a{
+	display:inline-block;
+	max-width: 750px;
+}
+.post-content .cover img{
+	border-radius: 5px;
+
+}
+.post-content a{
+	color: #c7a06a;
+}
+
+.container .timetable .day{
+	color: var(--main-green-color-light);
+	border-bottom: 2px solid var(--main-green-color-light) !important;
+}
+
+.container .timetable .info{
+
+	border-bottom: 1px solid var(--main-green-color-light) !important;
+}
+
+.btn.previous-week,
+.btn.next-week{
+	font-weight: 600;
+	background: #f1ecdc;
+	color: var(--main-green-color-light);
+	border: 1px solid var(--main-green-color-light) !important;
+}
+
+.btn.previous-week:hover,
+.btn.previous-week:focus,
+.btn.previous-week:active,
+.btn.next-week:hover,
+.btn.next-week:focus,
+.btn.next-week:active{
+	background: var(--main-green-color-light) !important;
+	-webkit-box-shadow: 0px 0px 15px 4px rgba(34, 60, 80, 0.2) !important;
+	-moz-box-shadow: 0px 0px 15px 4px rgba(34, 60, 80, 0.2) !important;
+	box-shadow: 0px 0px 15px 4px rgba(34, 60, 80, 0.2) !important;
+	color: var(--main-sand-color);
+	transition: 0.5s;
+}
 
 @media (max-width:767.98px) {
 	.nav-link{
+		text-align: left;
+	}
+
+	.nav-link.disabled_butt{
 		cursor: default !important;
 	}
-	.nav-link:hover{
+	.nav-link.show,
+	.nav-link:hover,
+	.nav-link:focus,
+	.nav-link:active{
 		background: none;
+	}
 
+	.btn-donate:hover,
+	.btn-donate:focus,
+	.btn-donate:active{
+		background: var(--main-green-color-mid);
 	}
-	.nav-link.show{
-		background: none;
-	}
+
 	.navbar-nav .dropdown-toggle .caret {
 		display: none;
 	}
@@ -474,15 +563,13 @@ blockquote:after {
 	.navbar-nav .dropdown > a {
 		outline: 0;
 	}
-	.dropdown-item:hover{
-		background: #fff !important;
-	}
+
 	.navbar-nav .dropdown-menu {
 		position: static;
 		float: none;
 		width: auto;
 		margin-top: 0px;
-		background-color: transparent;
+		background-color: #f1ecdc;
 		border: 0;
 		transition: 0.5s;
 		-webkit-box-shadow: none;
@@ -492,6 +579,12 @@ blockquote:after {
 		margin-top: 10px;
 		max-height: 400px;
 		flex-wrap: nowrap !important;
+	}
+
+	.dropdown-item:hover,
+	.dropdown-item:focus,
+	.dropdown-item:active{
+		background: #fff !important;
 	}
 	.navbar-brand{
 		margin: auto;
@@ -517,4 +610,5 @@ blockquote:after {
 	.paginator.min{
 		display: block;
 	}
+
 }

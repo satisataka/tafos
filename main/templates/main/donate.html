@@ -1,0 +1,55 @@
+
+{% extends "layout/basic.html" %}
+{% load static %}
+{% block title %} Пожертвовать{% endblock %}
+{% block title_category %}{{ block.super }} Пожертвовать {% endblock %}
+{% block breadcrumbs %}
+	{{ block.super }}
+	<li class="breadcrumb-item active d-inline-block text-truncate" style="max-width: 300px;" aria-current="page">
+		Пожертвовать
+	</li>
+{% endblock %}
+
+{% block content %}
+<div class='post-content'>
+	<p>	<span class="fst-italic">
+	Мы живем в удивительное время, когда по всей России усилиями православных подвижников восстанавливаются и строятся монастыри и храмы.
+	Каждый сам решает: участвовать ли в этом важном и богоугодном деле или остаться сторонним наблюдателем.
+	Православный народ давно заметил, что жертвующие на храм ещё в этой жизни получают от Бога несоизмеримо большее вознаграждение.
+	Кроме того, даже небольшое пожертвование может помочь человеку вступить на путь Спасения.
+	</span>
+	</p>
+	<h2 class="text-center"><span class="fw-bold">Реквизиты</span></h2>
+	<p>
+	<span class="fw-bold"> Местная православная религиозная организация прихода Введенского храма село Рыжево</span><br>
+	ИНН 5011014702 <br>
+	Банк «Возрождение» ОАО г.Москва, Егорьевский филиал: <br>
+	р/с 40703810801200140418 <br>
+	к/с 30101810900000000181 <br>
+	БИК 044525181 <br>
+	КПП 501101001 <br>
+	ОКАТО: 46212501000 <br>
+	Юридический адрес: 140342 Россия, Московская область, Егорьевский район, село Рыжево, д.25Б <br>
+	<a href="{% static "main/kvit.rtf" %}">Скачать бланк квитанции для пожертвования на наш храм через Банк</a>
+	</p>
+
+	<h2 class="text-center"><span class="fw-bold">Пожертвование на Храм "Онлайн переводом"</span></h2>
+
+	<p><span class="fw-bold">Порядок совершения пожертвования на наш храм:</span></p>
+		<ol>
+			<li>Введите сумму пожертвования</li>
+			<li>Выберите способ оплаты: ЮMoney, Банковская карта или счёт телефона (по умолчанию ЮMoney)</li>
+			<li>Нажмите кнопку <span class="fw-bold">"Пожертвовать"</span></li>
+			<li>По желанию оставьте своё ФИО</li>
+			<li>Пройдите стандартную процедуру оплаты</li>
+		</ol>
+
+	<p><span class="fst-italic">Внимание! Если Вы хотите пожертвовать на наш храм большую сумму, то лучше воспользуйтесь пожертвованием на наш храм через Банк.</span></p>
+	<div class='ya-donate'>
+		<iframe src="https://yoomoney.ru/quickpay/shop-widget?writer=seller&targets=%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D0%A5%D1%80%D0%B0%D0%BC%20(%D1%81%D0%B5%D0%BB%D0%BE%20%D0%A0%D1%8B%D0%B6%D0%B5%D0%B2%D0%BE)&targets-hint=%D0%9E%D1%81%D1%82%D0%B0%D0%B2%D1%8C%D1%82%D0%B5%20%D1%81%D0%B2%D0%BE%D1%91%20%D0%B8%D0%BC%D1%8F%20%D0%B5%D1%81%D0%BB%D0%B8%20%D0%BF%D0%BE%D0%B6%D0%B5%D0%BB%D0%B0%D0%B5%D1%82%D0%B5.&default-sum=150&button-text=14&payment-type-choice=on&mobile-payment-type-choice=on&fio=on&hint=&successURL=&quickpay=shop&account=4100110354872380&" width="100%" height="244" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+	</div>
+	<a href="https://yoomoney.ru/to/4100110354872380" target="_blank" rel="noopener">Если по каким-то причинам вам не удаётся совершить пожертвование на сайте, воспользуетесь нашей визиткой ЮMoney</a>
+	</p>
+
+</div>
+{% endblock %}

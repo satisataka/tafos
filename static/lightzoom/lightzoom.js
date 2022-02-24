@@ -98,7 +98,7 @@
             lz.addClass($this.settings.boxClass);
           }
 
-          var title = img.attr('title');
+          var title = img.attr('alt');
 
           overlayCss = {
             opacity : $this.settings.overlayOpacity,

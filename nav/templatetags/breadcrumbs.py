@@ -19,12 +19,10 @@ class BreadCrumbsObject(template.Node):
 		menu = False
 		menu_item = False
 		context['crumbs'] = []
-
 		if current_path:
 			for m in Menu.objects.filter(slug__isnull=False):
 				if m.slug and current_path.startswith(m.slug):
 					menu = m
-
 			if menu:
 				current_path = current_path.replace(menu.slug + '/', '', 1)
 				if current_path:
@@ -34,6 +32,8 @@ class BreadCrumbsObject(template.Node):
 					if menu_item:
 						current_path = current_path.replace(menu_item.slug + '/', '', 1)
 						context['crumbs'] = [{'menu_slug': menu.slug, 'menu_name': menu.name, 'menu_item_slug': menu_item.slug, 'menu_item_name': menu_item.title, 'current_path': current_path}]
+					else:
+						context['crumbs'] = [{'menu_slug': menu.slug, 'menu_name': menu.name, 'current_path': current_path}]
 				else:
 					context['crumbs'] = [{'menu_slug': menu.slug, 'menu_name': menu.name, 'current_path': current_path}]
 			else:

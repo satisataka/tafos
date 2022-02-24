@@ -78,7 +78,7 @@ header{
 
 }
 .nav-link:focus,
-.nav-link:active
+.nav-link:active,
 .nav-link:hover{
 	background-color: #fff;
 	border-radius: 5px;
@@ -236,10 +236,6 @@ footer .soсial-net .fa-instagram{
 	color: var(--main-sand-color);
 	font-size: 2rem;
 }
-.main-content{
-	margin-left: 5%;
-	margin-right: 5%;
-}
 .rubrics{
 	margin-left: 1%;
 }
@@ -372,7 +368,6 @@ article .post-caption{
 	display: block;
 	min-height: 200px;
 	width: 35%;
-
 }
 .exmp2 {
 	background-repeat: no-repeat;
@@ -447,24 +442,47 @@ blockquote:after {
 	right: -30px;
 	bottom: -85px;
 }
+#lz-box p{
+	margin: auto;
+	display: block;
+	width: 90%;
+	max-width: 700px;
+	text-align: center;
+	height: 150px;
+	white-space:normal;
+	padding-top: 1px;
+	padding-bottom: 4px;
+	font-size: 1rem;
+	line-height: 1rem;
 
-.post-content figure.image-captioned{
-	margin: 3% auto;
+}
+
+.post-content figure{
+	margin: 1rem auto;
 	max-width: 750px;
-	border-radius: 5px;
 	overflow: hidden;
 	position: relative;
 }
+
 .post-content img{
-	max-width: 750px;
 	width: 100%;
+	max-width: 750px;
 	height: auto;
 	position: relative;
 	z-index: 1;
+	border-radius: 5px;
+	margin: auto;
 }
-.post-content figure.image-captioned figcaption{
+.post-content figure figcaption{
+	margin: auto;
+	display: block;
+	width: 90%;
 	text-align: center;
-	background: #f4f2ec;
+	padding-top: 1px;
+	padding-bottom: 4px;
+	color: #666;
+	font-size: 1rem;
+	line-height: 1rem;
 }
 .post-content .autor,
 .post-content .time{
@@ -473,15 +491,14 @@ blockquote:after {
 	font-weight: 700;
 	white-space: nowrap;
 }
-
-
+.text-justify {
+	text-align: justify;
+}
 .post-content .title{
 	font-weight: 700;
 }
 .post-content .title-article{
 	font-weight: 700;
-
-
 }
 .post-content .cover{
 	background: #f4f2ec;
@@ -493,10 +510,32 @@ blockquote:after {
 }
 .post-content .cover img{
 	border-radius: 5px;
-
 }
 .post-content a{
-	color: #c7a06a;
+	color: #bb9055;
+}
+.video-container{
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+}
+.post-content .video-container iframe{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100% !important;
+	height: 100% !important;
+}
+.post-content ul{
+	padding-left: 3%;
+}
+
+.post-content .video-wrapper{
+	margin: auto;
+	width: 900px;
+	max-width: 100%;
 }
 
 .container .timetable .day{
@@ -531,6 +570,12 @@ blockquote:after {
 	transition: 0.5s;
 }
 
+.ya-donate{
+	max-width: 600px;
+	margin: auto;
+	text-align: center;
+}
+
 @media (max-width:767.98px) {
 	.nav-link{
 		text-align: left;
@@ -539,10 +584,10 @@ blockquote:after {
 	.nav-link.disabled_butt{
 		cursor: default !important;
 	}
-	.nav-link.show,
-	.nav-link:hover,
-	.nav-link:focus,
-	.nav-link:active{
+	.nav-link.disabled_butt.show,
+	.nav-link.disabled_butt:hover,
+	.nav-link.disabled_butt:focus,
+	.nav-link.disabled_butt:active{
 		background: none;
 	}
 

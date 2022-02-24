@@ -18,15 +18,19 @@
 		<time class="col-auto mx-auto time">{{ article.published|date:"H:i, d E Yг." }}</time>
 	</div>
 
-
-	{% if article.cover %}
+	{% if article.image %}
 	<div class="cover text-center p-3 my-3">
-		<img alt="Обложка статьи" src="{{ article.cover.url }}"	>
+		{% load fb_versions %}
+		<a class="lightzoom" href="{{ article.image.url }}">
+			<img src="{% version article.image "article" %}">
+		</a>
 	</div>
 	{% endif %}
 
+	<div class='article-text'>
+		{{ article.content |safe }}
+	</div>
 
-	{{ article.content |safe }}
 	{% if article.author %}
 	<div class="row mt-3 mb-2 me-1">
 		<div class='col-auto ms-auto autor'>Автор: {{ article.author }}</div>

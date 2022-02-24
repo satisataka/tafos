@@ -38,13 +38,14 @@
 	{% for article in all_articles %}
 		<div class="cards row mb-3">
 			{% if article.image %}
-			<div class="wrapper exmp2 col-2 " style="background-image: url('{{ article.image.url }}');"></div>
+			{% load fb_versions %}
+			<div class="wrapper exmp2 col-2 " style="background-image: url('{% version article.image "cover" %}');"></div>
 			{% endif %}
 			<div class="col ps-3 pe-2 py-2 pt-md-2 ">
 				<div>
 				<h5 class="rubric">{{ article.rubric }}</h5>
 				<h3 class="title"><a class="title stretched-link" href="{% url 'detail_article' slug=article.slug %}">{{ article.title }}</a></h3>
-				<p class="descrip">{{ article.description }}</p>
+				<p class="descrip lh-sm">{{ article.description }}</p>
 				</div>
 				<div class="mt-auto">
 				<p class="pub">{{ article.published|date:"d.m.Y H:i" }}</p>
@@ -52,7 +53,11 @@
 			</div>
 		</div>
 	{% empty %}
-			No articles yet.
+	<div class="row ">
+		<div class="col text-center fw-bold fs-4 mb-3 mt-2 ">
+			В этой категории нет статей
+		</div>
+	</div>
 	{% endfor %}
 </div>
 

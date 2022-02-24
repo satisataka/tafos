@@ -5,29 +5,26 @@
 {% block content %}
 
 
-
-
-{% load static %}
-<div class='post-content'>
+<div class='post-content mt-3'>
 	{% for item in menu_items %}
-		<div class="cards row mb-4">
-			<div class="wrapper exmp2 col-2 " style="background-image: url('{% static "main/bg_1.jpg" %}');"></div>
-
-				<div class="col ">
-					<div class="mx-3 my-2">
-					<div>
-
-					<h3 class="title"><a class="title stretched-link" href="{{item.slug}}">{{ item.title }}</a></h3>
-					<p class="descrip">{{ item.description }}</p>
-					</div>
-					<div class="mt-auto">
-
-					</div>
+		<div class="cards row mb-3">
+			{% if item.image %}
+			{% load fb_versions %}
+			<div class="wrapper exmp2 col-2 " style="background-image: url('{% version item.image "cover" %}');"></div>
+			{% endif %}
+			<div class="col px-3 py-3 py-md-2 ">
+				<div>
+				<h3 class="ms-1 title"><a class="title stretched-link" href="{{ item.slug }}">{{ item.title }}</a></h3>
+				<p class="descrip lh-sm">{{ item.description }}</p>
 				</div>
-		</div>
+			</div>
 		</div>
 	{% empty %}
-			No articles yet.
+	<div class="row ">
+		<div class="col text-center fw-bold fs-4 mb-3 mt-2 ">
+			В этой категории нет статей
+		</div>
+	</div>
 	{% endfor %}
 </div>
 

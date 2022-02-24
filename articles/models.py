@@ -38,11 +38,18 @@ class Article(models.Model):
 	slug = models.SlugField(default='', db_index=True, unique=True, verbose_name='URL-aдрес(Cлаг)', help_text='Ссылка, например: about')
 	title = models.CharField(max_length=50, unique=True, verbose_name='Название')
 	author = models.ForeignKey(Author, on_delete=models.PROTECT, null=True, blank=True, verbose_name='Выберете автора')
-	description = models.TextField(null=False, blank=False, verbose_name='Краткое описание')
+	description = models.TextField(max_length=500, null=False, blank=False, verbose_name='Краткое описание')
 	content = HTMLField(default='', null=False, blank=False, verbose_name='Содержание')
 	rubric = models.ForeignKey('Rubric', default='', on_delete=models.PROTECT, verbose_name='Рубрики')
 	published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликовано')
-	image = FileBrowseField("Изображение", max_length=200, directory="images_cover/", extensions=['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff'], format='image', blank=True)
+	image = FileBrowseField(
+		"Изображение",
+		max_length=200,
+		directory="images_cover/",
+		extensions=['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
+		format='image',
+		blank=True
+	)
 
 	class Meta:
 		verbose_name_plural = 'Статьи'

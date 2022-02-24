@@ -7,13 +7,15 @@
 
 	{% if now_week != week|date:"W" or now_year != week|date:"Y" %}
 		<li class="breadcrumb-item active" aria-current="page">
-			Неделя {{ week|date:"W" }}, {{ week|date:"Y" }}г.
+			Неделя {{ week|date:"W" }}, {{ week|date:"Y" }}г. {{url}}
 		</li>
 	{% endif %}
 
 {% endblock %}
 {% block title_category %}{{ block.super }}Рассписание{% endblock %}
 {% block content %}
+{% now "W" as now_week %}
+{% now "Y" as now_year %}
 
 	{% for timetable in object_list %}
 	<div class="container timetable mb-3 ">
@@ -47,12 +49,21 @@
 	<div class="row">
 		<div class="col-auto me-md-auto ms-md-5 mb-1">
 		{% if previous_week %}
-			<a class="btn previous-week" href="{% url 'timetable' previous_week|date:"Y" previous_week|date:"W" %}">&lt; Предыдущая неделя</a>
+			{% if now_week != previous_week|date:"W" or now_year != previous_week|date:"Y" %}
+				<a class="btn previous-week" href="{% url 'timetable' previous_week|date:"Y" previous_week|date:"W" %}">&lt; Предыдущая неделя</a>
+			{% else %}
+				<a class="btn previous-week" href="{% url 'timetable_now' %}">&lt; Предыдущая неделя</a>
+			{% endif %}
+
 		{% endif %}
 		</div>
 		<div class="col-auto ms-auto ms-md-0 me-md-5 mb-1">
 		{% if next_week %}
-			<a class="btn next-week" href="{% url 'timetable' next_week|date:"Y" next_week|date:"W" %}">Следующая неделя &gt;</a>
+			{% if now_week != next_week|date:"W" or now_year != next_week|date:"Y" %}
+				<a class="btn next-week" href="{% url 'timetable' next_week|date:"Y" next_week|date:"W" %}">Следующая неделя &gt;</a>
+			{% else %}
+				<a class="btn next-week" href="{% url 'timetable_now' %}">Следующая неделя &gt;</a>
+			{% endif %}
 		{% endif %}
 		</div>
 	</div>

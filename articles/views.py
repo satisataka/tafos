@@ -17,7 +17,7 @@ from .models import Article, Author, Rubric
 class ArticlesListView(ListView):
 	model = Article
 	context_object_name = 'all_articles'
-	paginate_by = 1
+	paginate_by = 10
 
 	def get_queryset(self):
 		qs = self.model.objects.all()

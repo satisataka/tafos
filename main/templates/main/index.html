@@ -54,47 +54,4 @@
 	</ul>
 </nav>
 
-<!--<div>
-	{% if page.has_previous %}
-		<a href="?page={{ page.previous_page_number }}">Назад</a>
-	{% endif %}
-
-
-	{% for p in page.paginator.page_range %}
-		{% if page.number == p %}
-			<li>{{ p }}</li>
-
-		{% elif p == 1 %}
-			<li>
-				<a href="?page={{ p }}">{{ p }}</a>
-			</li>
-			{% if page.number > 4 %}
-				<li>
-					<p>...</p>
-				</li>
-			{% endif %}
-
-		{% elif p >= page.number|add:-2 and p <= page.number|add:2  %}
-			<li>
-				<a href="?page={{ p }}">{{ p }}</a>
-			</li>
-
-		{% elif p == page.paginator.num_pages %}
-			<li>
-				<p>...</p>
-			</li>
-			<li>
-				<a href="?page={{ p }}">{{ p }}</a>
-			</li>
-		{% endif %}
-	{% endfor %}
-
-
-	{% if page.has_next %}
-	&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="?page={{ page.next_page_number }}">Вперед</a>
-	{% endif %}
-
-</div>-->
-
 {% endblock %}

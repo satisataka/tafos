@@ -1,57 +1,140 @@
 {% extends "layout/basic.html" %}
+{% load static %}
+{% block title %} Главная {% endblock %}
 
-{% block title_category %}{% endblock %}
-{% block content %}
-<div class="content-container">
-	<div class='container-xxl'>
-		<article>
+{% block title_category %}{{ block.super }} Главная {% endblock %}
 
-			{% for bb in bbs %}
-			<div>
-				<h2> <a href="{% url 'detail' pk=bb.pk %}"> {{ bb.title_and_price }}</a></h2>
-				<p>{{ bb.content|safe }}</p>
-				<p><a href="{% url 'by_rubric' bb.rubric.pk %}">{{bb.rubric.name}}</a></p>
-				<p>{{ bb.published|date:"d.m.Y H:i:s" }}</p>
+{% block carousel %}
+
+	{% load fb_versions %}
+	{% load static %}
+
+	<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-inner">
+
+			{% for car in carousel %}
+			{% if car.order == 1 %}
+			<div class="carousel-item active">
+			{% else %}
+			<div class="carousel-item">
+			{% endif %}
+				<div class="img-carousel">
+					<img src="{{ car.image.url }}" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-caption p-2">
+					<h1>{{ car.title }}</h1>
+					<a class="btn btn-carousel" href="{{ car.url }}">Подробнее</a>
+
+				</div>
 			</div>
 			{% endfor %}
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Предыдущий</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Следующий</span>
+		</button>
+	</div>
+{% endblock %}
 
-		</article>
+{% block content %}
+<div class="row main-home">
+	<div class="home-news col-12 col-md-8  order-2 order-md-1">
+		<div class="header col-12 text-start h2 fw-bold  mt-2 mt-md-0">Новости Обители</div>
+		<div class='post-content'>
+			{% for article in news %}
+				<div class="cards row mb-2">
+					{% if article.image %}
+					{% load fb_versions %}
+					<div class="wrapper exmp2 col-2 " style="background-image: url('{% version article.image "cover" %}');"></div>
+					{% endif %}
+					<div class="col ps-3 pe-2 py-2 pt-md-2 ">
+						<div>
+						<h5 class="rubric">{{ article.rubric }}</h5>
+						<h3 class="title"><a class="title stretched-link" href="{% url 'detail_article' slug=article.slug %}">{{ article.title }}</a></h3>
+						<p class="descrip lh-sm">{{ article.description }}</p>
+						</div>
+						<div class="mt-auto">
+						<p class="pub">{{ article.published|date:"d.m.Y H:i" }}</p>
+						</div>
+					</div>
+				</div>
+			{% empty %}
+			<div class="row ">
+				<div class="col text-center fw-bold fs-4 mb-3 mt-2 ">
+					В этой категории нет статей
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="col-12 text-center my-2">
+			<a class="btn btn-carousel" href="/novosti-obiteli/">Все новости</a>
+		</div>
+
 	</div>
 
-<nav>
-	<ul class="pagination pagination-sm flex-wrap">
-		{% if page.has_previous %}
-			<li class="page-item">
-				<a class="page-link page-next-link" href="?page={{ page.previous_page_number }}">&lt; Назад</a>
-			</li>
-		{% endif %}
-		{% for p in page.paginator.page_range %}
-			{% if page.number == p %}
-				<li class="page-item disabled"><span class="page-link">{{ p }}</span></li>
+	<div class="home-timetable col-12 col-md-4 order-1 order-md-2">
+		<div class="row ">
+			<div class="header col-12 text-start h2 fw-bold mb-0 ">Рассписание Богослужений</div>
+			<div class="img-timetable mt-2">
+				<img src="{% static 'main/timetable.JPG' %}" alt="">
+			</div>
+			<div class="col-12 my-2">
 
-			{% elif p == 1 %}
-				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
-				{% if page.number > 4 %}
-					<li class="page-item disabled"><span class="page-link page-ellipsis-link">...</span></li>
-				{% endif %}
+				<div class="day-week col-12 text-center fw-bold fs-4">
+					Сегодня
+				</div>
+				<div class="day col-12 text-center fw-bold fs-5" >
+					{{ day_now|date:"l, j E" }}
+				</div>
+				{% for timetable in timetable_now %}
+				<div class="row info pt-3 pb-3 mx-0">
+					<div class="time col-6 text-center fw-bold">
+						{{ timetable.time }}
+					</div>
+					<div class="service col-6 text-center fw-bold">
+						{{ timetable.service }}
+					</div>
+				</div>
+				{% empty %}
+					<div class="info col-12 text-center fw-bold pt-3 pb-3">
+						Нет богослужений
+					</div>
+				{% endfor %}
+			</div>
+			<div class="col-12">
+				<div class="day-week col-12 text-center fw-bold fs-4">
+					Завтра
+				</div>
+				<div class="day col-12 text-center fw-bold fs-5">
+					{{ day_tomorrow|date:"l, j E" }}
+				</div>
+				{% for timetable in timetable_tomorrow %}
+				<div class="row info pt-3 pb-3 mx-0">
+					<div class="time col-6 text-center fw-bold">
+						{{ timetable.time }}
+					</div>
+					<div class="service col-6 text-center fw-bold">
+						{{ timetable.service }}
+					</div>
+				</div>
+				{% empty %}
+					<div class="info col-12 text-center fw-bold pt-3 pb-3">
+						Нет богослужений
+					</div>
+				{% endfor %}
+			</div>
+			<div class="col-12 text-center my-2">
+				<a class="btn btn-carousel" href="/worship/timetable/">Подробнее</a>
+			</div>
+		</div>
 
-			{% elif p >= page.number|add:-2 and p <= page.number|add:2  %}
-				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+	</div>
 
-			{% elif p == page.paginator.num_pages %}
-				{% if page.number|add:3 < page.paginator.num_pages %}
-					<li class="page-item disabled"><span class="page-link page-ellipsis-link">...</span></li>
-				{% endif %}
+</div>
 
-				<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
-			{% endif %}
-		{% endfor %}
-		{% if page.has_next %}
-			<li class="page-item">
-				<a class="page-link page-next-link" href="?page={{ page.next_page_number }}">Далее &gt;</a>
-			</li>
-		{% endif %}
-	</ul>
-</nav>
 
 {% endblock %}

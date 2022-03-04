@@ -1,10 +1,10 @@
 from django.urls import path, include
-from .views import MenuItemView
+from .views import MenuItemView, СarouselView
 from django.views.generic import TemplateView, RedirectView
 
 
 urlpatterns = [
-	path('', TemplateView.as_view(template_name='main/index.html'), name='index'),
+	path('', СarouselView.as_view(), name='index'),
 	path('donate/', TemplateView.as_view(template_name='main/donate.html'), name='donate'),
 	path('worship/timetable/', include('timetable.urls')),
 	path('contacts/virtual/', RedirectView.as_view(url='http://vt.fvp.su/Ryzhevo/Ryzhevo.html'), name='virtual'),

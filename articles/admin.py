@@ -18,7 +18,7 @@ class ArticleAdmin(admin.ModelAdmin):
 	fieldsets = (
 		('Зоголовок', {
 			'classes': ('grp-collapse grp-open',),
-			'fields': ('title', 'slug', 'author', 'description',),
+			'fields': ('title', 'slug', 'author', 'rubric', 'description',),
 		}),
 		('Обложка статьи', {
 			'classes': ('grp-collapse grp-open',),

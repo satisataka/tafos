@@ -20,8 +20,11 @@
 	{% for timetable in object_list %}
 	<div class="container timetable mb-3 ">
 		<div class="row">
-			<div class="day col text-center fw-bold fs-4 pb-2 mt-3">
+			<div class="day col-12 text-center fw-bold fs-4 mt-3">
 				{{ timetable.day_of_week }}, {{ timetable.day|date:"j E" }}
+			</div>
+			<div class="holiday col-12 text-center fw-bold pb-2">
+				{{ timetable.name_holiday }}
 			</div>
 		</div>
 

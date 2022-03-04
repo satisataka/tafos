@@ -5,7 +5,7 @@ from django.contrib.flatpages.models import FlatPage
 from django.urls import reverse
 from tinymce.widgets import TinyMCE
 from django.db import models
-
+from .models import Сarousel
 from django.contrib.admin.sites import site
 from django.contrib.admin.widgets import ForeignKeyRawIdWidget
 
@@ -42,3 +42,4 @@ class TinyMCEFlatPageAdmin(FlatPageAdmin):
 
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, TinyMCEFlatPageAdmin)
+admin.site.register(Сarousel)

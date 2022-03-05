@@ -8,7 +8,7 @@ from .views import TimetableWeekArchiveView
 urlpatterns = [
 	path('', TimetableWeekArchiveView.as_view(
 		year=int(date.today().year),
-		week=int(date.today().isocalendar().week)),
+		week=int(date.today().isocalendar()[1])),
 		name='timetable_now'),
 	path('<int:year>/week/<int:week>', TimetableWeekArchiveView.as_view(), name='timetable'),
 ]

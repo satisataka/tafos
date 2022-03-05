@@ -5,6 +5,7 @@ from .models import Сarousel
 from timetable.models import TimeTable, TimeTableItem
 from articles.models import Article
 from datetime import datetime, date, time, timedelta
+from django.shortcuts import render
 
 
 class MenuItemView(ListView):
@@ -32,20 +33,32 @@ class СarouselView(TemplateView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		context['carousel'] = Сarousel.objects.all()
-		day_now = datetime.now().date()
-		day_tomorrow = day_now + timedelta(days=1)
-
-		context['day_now'] = day_now
-		context['day_tomorrow'] = day_tomorrow
+		context['day_now'] = datetime.now().date()
+		context['day_tomorrow'] = context['day_now'] + timedelta(days=1)
 		try:
-			context['timetable_now'] = TimeTableItem.objects.filter(date__day=day_now)
+			context['timetable_now'] = TimeTableItem.objects.filter(date__day=context['day_now'])
 		except TimeTableItem.DoesNotExist:
 			context['timetable_now'] = None
 		try:
-			context['timetable_tomorrow'] = TimeTableItem.objects.filter(date__day=day_tomorrow)
+			context['timetable_tomorrow'] = TimeTableItem.objects.filter(date__day=context['day_tomorrow'])
 		except TimeTableItem.DoesNotExist:
 			context['timetable_tomorrow'] = None
 
 		context['news'] = Article.objects.all()[:3]
-		print(context['news'])
 		return context
+
+
+def custom_page_not_found_view(request, exception):
+	return render(request, "errors/404.html", {})
+
+
+def custom_error_view(request, exception=None):
+	return render(request, "errors/500.html", {})
+
+
+def custom_permission_denied_view(request, exception=None):
+	return render(request, "errors/403.html", {})
+
+
+def custom_bad_request_view(request, exception=None):
+	return render(request, "errors/400.html", {})

@@ -9,7 +9,7 @@ class Сarousel(models.Model):
 	image = FileBrowseField(
 		"Обложка",
 		max_length=200,
-		directory="images_cover/",
+		directory="images_carousel/",
 		extensions=['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
 		format='image',
 		blank=False,

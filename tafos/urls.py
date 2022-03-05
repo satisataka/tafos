@@ -18,9 +18,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from filebrowser.sites import site
+from django.conf.urls import handler400, handler403, handler404, handler500
 
+from django.views.generic.base import RedirectView
+
+handler404 = 'main.views.custom_page_not_found_view'
+handler500 = 'main.views.custom_error_view'
+handler403 = 'main.views.custom_permission_denied_view'
+handler400 = 'main.views.custom_bad_request_view'
 
 urlpatterns = [
+
 	path('admin/filebrowser/', site.urls),
 	path('grappelli/', include('grappelli.urls')),
 	path('tinymce/', include('tinymce.urls')),

@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=l$hxz2gyo7&%_ix*^*6r661kjnjd03=5!vzynn-0$5nh!*2z_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['194.58.122.168', 'satisataka.ru']
 
 
 # Application definition
@@ -50,7 +50,14 @@ MIDDLEWARE = [
 	'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
-SITE_ID = 2
+CACHES = {
+	'default': {
+		'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+		'LOCATION': 'unix:/tmp/memcached.sock',
+	}
+}
+
+SITE_ID = 1  # 2 in local
 
 ROOT_URLCONF = 'tafos.urls'
 
@@ -76,14 +83,27 @@ WSGI_APPLICATION = 'tafos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# server
 DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.postgresql_psycopg2',
+		'NAME': 'tafos_db',
+		'USER': 'POSTGRES_TAFOS',
+		'PASSWORD': 'ce7Tequ4gi9e',
+		'HOST': 'localhost',
+		'PORT': '',
+	}
+}
+
+# local
+'''DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3',
 		'NAME': BASE_DIR / 'db.tafos',
 	}
-}
+}'''
 
-
+ADMINS = [('Artem Kozlov', 'kozlov0013@gmail.com'), ]
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -214,3 +234,6 @@ FILEBROWSER_EXTENSIONS = {
 GRAPPELLI_INDEX_DASHBOARD = 'tafos.dashboard.CustomIndexDashboard'
 GRAPPELLI_ADMIN_TITLE = 'Введенский храм'
 GRAPPELLI_CLEAN_INPUT_TYPES = False
+
+
+

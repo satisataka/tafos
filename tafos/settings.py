@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'tafos.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # server
-DATABASES = {
+'''DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
 		'NAME': 'tafos_db',
@@ -94,14 +94,14 @@ DATABASES = {
 		'PORT': '',
 	}
 }
-
+'''
 # local
-'''DATABASES = {
+DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3',
 		'NAME': BASE_DIR / 'db.tafos',
 	}
-}'''
+}
 
 ADMINS = [('Artem Kozlov', 'kozlov0013@gmail.com'), ]
 # Password validation

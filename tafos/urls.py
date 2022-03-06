@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.flatpages import urls
 from filebrowser.sites import site
 from django.conf.urls import handler400, handler403, handler404, handler500
 
@@ -27,7 +26,6 @@ handler403 = 'main.views.custom_permission_denied_view'
 handler400 = 'main.views.custom_bad_request_view'
 
 urlpatterns = [
-	path('pages/', include('django.contrib.flatpages.urls')),
 	path('admin/filebrowser/', site.urls),
 	path('grappelli/', include('grappelli.urls')),
 	path('tinymce/', include('tinymce.urls')),

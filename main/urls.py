@@ -13,4 +13,3 @@ urlpatterns = [
 	path('<slug:menu>/', MenuItemView.as_view(), name='menu_list'),
 	path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
 ]
-

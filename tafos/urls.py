@@ -19,7 +19,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from filebrowser.sites import site
 from django.contrib.flatpages import views
-from django.views.generic import RedirectView
 
 handler404 = 'main.views.custom_page_not_found_view'
 handler500 = 'main.views.custom_error_view'
@@ -31,7 +30,6 @@ urlpatterns = [
 	path('grappelli/', include('grappelli.urls')),
 	path('tinymce/', include('tinymce.urls')),
 	path('admin1482839/', admin.site.urls),
-	path('contacts/virtual/', RedirectView.as_view(url='http://vt.fvp.su/Ryzhevo/Ryzhevo.html'), name='virtual'),
 	path('', include('main.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -53,7 +53,10 @@ def get_items(current_path):
 	for menu in all_menu:
 		menu_list = []
 		for sub_menu in MenuItem.objects.filter(menu=menu, hide=False).order_by('order'):
-			menu_list.append({'slug': sub_menu.slug, 'title': sub_menu.title})
+			if sub_menu.redirect_url:
+				menu_list.append({'redirect_url': sub_menu.redirect_url, 'slug': sub_menu.slug, 'title': sub_menu.title})
+			else:
+				menu_list.append({'slug': sub_menu.slug, 'title': sub_menu.title})
 		menuitems.append({'menu_name': menu.name, 'menu_slug': menu.slug, 'menu_item': menu_list})
 
 	if cache_time >= 0 and not debug:

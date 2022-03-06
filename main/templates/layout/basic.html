@@ -85,7 +85,11 @@
 								<a class="btn nav-link disabled_butt active" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ menu.menu_name }}</a>
 								<ul class="dropdown-menu dropdown-menu-lg-right " aria-labelledby="dropdown">
 									{% for item in menu.menu_item %}
-										<li><a class="dropdown-item" href="/{{ menu.menu_slug }}/{{ item.slug }}" >{{ item.title }}</a></li>
+										{% if item.redirect_url %}
+										<li><a class="dropdown-item" href="{{ item.redirect_url }}" >{{ item.title }}</a></li>
+										{% else %}
+											<li><a class="dropdown-item" href="/{{ menu.menu_slug }}/{{ item.slug }}" >{{ item.title }}</a></li>
+										{% endif %}
 									{% endfor %}
 								</ul>
 							{% else %}
@@ -212,10 +216,14 @@
 			{% if menu.menu_item %}
 				<h6 class="text-uppercase fw-bold">{{ menu.menu_name }}</h6>
 				{% for item in menu.menu_item %}
-					<p><a href="/{{ menu.menu_slug }}/{{ item.slug }}" class="text-reset ">{{ item.title }}</a></p>
+					{% if item.redirect_url %}
+						<p><a href="{{ item.redirect_url }}" class="text-reset ">{{ item.title }}</a></p>
+					{% else %}
+						<p><a href="/{{ menu.menu_slug }}/{{ item.slug }}" class="text-reset ">{{ item.title }}</a></p>
+					{% endif %}
 				{% endfor %}
 			{% else %}
-				<h6 class="text-uppercase fw-bold" ><a href="{% url 'menu_list' menu.menu_slug %}" class="text-reset">{{ menu.menu_name }}</a></h6>
+				<h6 class="text-uppercase fw-bold"><a href="{% url 'menu_list' menu.menu_slug %}" class="text-reset">{{ menu.menu_name }}</a></h6>
 			{% endif %}
 		</div>
 		{% endfor %}

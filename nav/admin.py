@@ -30,7 +30,18 @@ class CustomMenuItemForm(forms.BaseInlineFormSet):
 class MenuItemInline(GrappelliSortableHiddenMixin, admin.StackedInline):
 	model = MenuItem
 	formset = CustomMenuItemForm
-	fields = ('title', 'slug', 'image', 'description', 'hide', 'order')
+
+	fieldsets = (
+		('', {
+			'classes': ('grp-collapse grp-open',),
+			'fields': ('title', 'slug', 'description', 'image'),
+		}),
+
+		('Прочее', {
+			'classes': ('grp-collapse grp-closed',),
+			'fields': ('hide', 'order', 'redirect_url'),
+		}),
+	)
 	sortable_field_name = "order"
 
 	inline_classes = ('grp-collapse grp-open',)
@@ -44,6 +55,7 @@ class MenuItemInline(GrappelliSortableHiddenMixin, admin.StackedInline):
 		if obj:
 			return 0
 		return extra
+
 
 class MenuAdmin(admin.ModelAdmin):
 	inlines = [MenuItemInline]

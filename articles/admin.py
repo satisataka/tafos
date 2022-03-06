@@ -32,7 +32,6 @@ class ArticleAdmin(admin.ModelAdmin):
 			'classes': ('grp-collapse grp-closed',),
 			'fields': ('published',),
 		}),
-
 	)
 
 	list_display = ('title', 'author', 'description', 'rubric', 'published')

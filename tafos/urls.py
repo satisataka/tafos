@@ -19,6 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from filebrowser.sites import site
 from django.conf.urls import handler400, handler403, handler404, handler500
+from django.contrib.flatpages import views
+
 
 handler404 = 'main.views.custom_page_not_found_view'
 handler500 = 'main.views.custom_error_view'
@@ -33,7 +35,9 @@ urlpatterns = [
 	path('', include('main.urls')),
 ]
 
-''' + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) '''
-
 if settings.DEBUG:
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
+	path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
+]

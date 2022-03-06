@@ -60,7 +60,10 @@ CACHES = {
 	}
 }
 
-SITE_ID = 1  # 2 in local
+if DEBUG:
+	SITE_ID = 2
+else:
+	SITE_ID = 1
 
 ROOT_URLCONF = 'tafos.urls'
 

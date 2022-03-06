@@ -1,7 +1,6 @@
 from django.urls import path, include
 from .views import MenuItemView, СarouselView
 from django.views.generic import TemplateView, RedirectView
-from django.contrib.flatpages import views
 
 
 urlpatterns = [
@@ -11,5 +10,4 @@ urlpatterns = [
 	path('contacts/virtual/', RedirectView.as_view(url='http://vt.fvp.su/Ryzhevo/Ryzhevo.html'), name='virtual'),
 	path('novosti-obiteli/', include('articles.urls')),
 	path('<slug:menu>/', MenuItemView.as_view(), name='menu_list'),
-	path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
 ]

@@ -723,6 +723,7 @@ blockquote:after {
 		display: block;
 		padding: 0;
 		padding-left: 2rem !important;
+		padding-right: 2rem !important;
 	}
 	.navbar-nav .dropdown > a {
 		outline: 0;

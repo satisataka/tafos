@@ -28,11 +28,10 @@ handler403 = 'main.views.custom_permission_denied_view'
 handler400 = 'main.views.custom_bad_request_view'
 
 urlpatterns = [
-
 	path('admin/filebrowser/', site.urls),
 	path('grappelli/', include('grappelli.urls')),
 	path('tinymce/', include('tinymce.urls')),
-	path('admin/', admin.site.urls),
+	path('admin1482839/', admin.site.urls),
 	path('', include('main.urls')),
 ]
 

@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from django.conf.locale.ru import formats as ru_formats
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -82,31 +82,29 @@ WSGI_APPLICATION = 'tafos.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# server
-'''DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.postgresql_psycopg2',
-		'NAME': 'tafos_db',
-		'USER': 'POSTGRES_TAFOS',
-		'PASSWORD': 'ce7Tequ4gi9e',
-		'HOST': 'localhost',
-		'PORT': '',
+if DEBUG:
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.sqlite3',
+			'NAME': BASE_DIR / 'db.tafos',
+		}
 	}
-}
-'''
-# local
-DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': BASE_DIR / 'db.tafos',
+else:
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.postgresql_psycopg2',
+			'NAME': 'tafos_db',
+			'USER': 'tafos',
+			'PASSWORD': 'tafos_db_password_kozlov',
+			'HOST': 'localhost',
+			'PORT': '',
+		}
 	}
-}
 
 ADMINS = [('Artem Kozlov', 'kozlov0013@gmail.com'), ]
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
 	{
 		'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',

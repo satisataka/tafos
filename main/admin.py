@@ -35,6 +35,7 @@ class СarouselAdmin(admin.ModelAdmin):
 			attrs={'cols': 80, 'rows': 30},
 			mce_attrs={
 				'style_formats': [{'title': 'Текст', 'format': 'p'}],
+				'placeholder': '',
 				'min_height': 80,
 				'height': 150,
 				'width': 500,

@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import TimeTable, TimeTableItem, ListChurchService
 from django import forms
 from django.db import models
-from django.forms.widgets import TimeInput
+from django.forms.widgets import TimeInput, DateInput
 from django.urls import reverse
 from django.utils.html import format_html
 
@@ -24,7 +24,25 @@ class TimeTableItemInline(admin.StackedInline):
 	model = TimeTableItem
 	formfield_overrides = {
 		# 'rows':20, 'cols':5
-		models.TimeField: {'widget': TimeInput(attrs={'type': "time"}, format='%H:%M')},
+		models.TimeField: {'widget': TimeInput(
+			format='%H:%M',
+			attrs={
+				'type': "time",
+				'style':
+				'''
+				font-family: Arial,sans-serif;
+				font-size: 12px;
+				font-weight: bold;
+				color: #555;
+				border: 1px solid #ccc;
+				-moz-border-radius:
+				3px;-webkit-border-radius:
+				3px;border-radius: 3px;
+				padding: 5px 5px;
+				box-shadow: inset 0 1px 3px 0 #eee;
+				'''
+			},
+		)},
 	}
 	show_change_link = False
 	verbose_name = 'Богослужение'
@@ -42,6 +60,25 @@ class TimeTableAdmin(admin.ModelAdmin):
 	list_filter = ['day']
 	ordering = ['-day']
 	inlines = [TimeTableItemInline]
+	formfield_overrides = {
+		# 'rows':20, 'cols':5
+		models.DateField: {'widget': DateInput(attrs={
+			'type': 'date',
+			'style':
+				'''
+				font-family: Arial,sans-serif;
+				font-size: 12px;
+				font-weight: bold;
+				color: #555;
+				border: 1px solid #ccc;
+				-moz-border-radius:
+				3px;-webkit-border-radius:
+				3px;border-radius: 3px;
+				padding: 5px 5px;
+				box-shadow: inset 0 1px 3px 0 #eee;
+				'''
+		})},
+	}
 
 	def view_service_link(self, obj):
 		count = obj.timetableitem_set.count()

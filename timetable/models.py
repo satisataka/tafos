@@ -15,7 +15,7 @@ class ListChurchService(models.Model):
 
 
 class TimeTable(models.Model):
-	name_holiday = models.CharField(max_length=100, blank=True, verbose_name='Название праздника')
+	name_holiday = models.CharField(max_length=100, blank=True, verbose_name='Название праздника (Не обязательно)')
 	day = models.DateField(db_index=True, unique=True, verbose_name='Дата', help_text='Введите дату')
 
 	class Meta:

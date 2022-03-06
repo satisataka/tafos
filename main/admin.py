@@ -1,24 +1,9 @@
 from django.contrib import admin
-from django import forms
 from django.contrib.flatpages.admin import FlatPageAdmin
 from django.contrib.flatpages.models import FlatPage
-from django.urls import reverse
 from tinymce.widgets import TinyMCE
 from django.db import models
 from .models import Сarousel
-from django.contrib.admin.sites import site
-from django.contrib.admin.widgets import ForeignKeyRawIdWidget
-
-'''
-class TinyMCEFlatPageAdminForm(forms.ModelForm):
-	"""Изменяем виджет"""
-	class Meta:
-		model = FlatPage
-		widgets = {
-			'content': TinyMCE(FlatPage._meta.get_field('content').remote_field, site),
-		}
-		fields = '__all__'
-'''
 
 
 class TinyMCEFlatPageAdmin(FlatPageAdmin):
@@ -40,6 +25,13 @@ class TinyMCEFlatPageAdmin(FlatPageAdmin):
 	}
 
 
+class СarouselAdmin(admin.ModelAdmin):
+	list_display = ('title', 'order')
+	list_display_links = ('title',)
+	list_editable = ('order',)
+
+
+admin.site.register(Сarousel, СarouselAdmin)
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, TinyMCEFlatPageAdmin)
-admin.site.register(Сarousel)
+

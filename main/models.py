@@ -1,6 +1,7 @@
 from django.db import models
 from filebrowser.fields import FileBrowseField
 
+
 class Сarousel(models.Model):
 	url = models.CharField('URL', max_length=100, db_index=True, help_text='Ссылка, например: /about/history/', default='')
 	title = models.CharField(max_length=50, unique=True, verbose_name='Заголовок')
@@ -16,9 +17,9 @@ class Сarousel(models.Model):
 	)
 
 	class Meta:
-		verbose_name_plural = 'Настройка Карусели'
-		verbose_name = 'Настройка Карусели'
-		ordering = ['-order']
+		verbose_name_plural = 'Настройка карусели'
+		verbose_name = 'Карусель'
+		ordering = ['order']
 
 	def __str__(self):
 		return self.title

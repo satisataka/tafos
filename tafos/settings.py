@@ -222,8 +222,9 @@ FILEBROWSER_VERSIONS = {
 	'thumbnail': {'verbose_name': 'Миниатюра (60x60)', 'width': 60, 'height': 60, 'opts': 'crop'},
 	'cover': {'verbose_name': 'Для обложки (400px)', 'width': 500, 'height': '', 'opts': ''},
 	'article': {'verbose_name': 'Для статьи (750px)', 'width': 750, 'height': '', 'opts': ''},
+	'carousel': {'verbose_name': 'Для карусели (1080px)', 'width': 1080, 'height': '', 'opts': ''},
 }
-FILEBROWSER_ADMIN_VERSIONS = ['thumbnail', 'cover', 'article']
+FILEBROWSER_ADMIN_VERSIONS = ['thumbnail']
 FILEBROWSER_EXTENSIONS = {
 	'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
 	'Document': ['.pdf', '.doc', '.rtf', '.txt', '.xls', '.csv'],

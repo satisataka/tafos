@@ -18,7 +18,7 @@
 			<div class="carousel-item">
 			{% endif %}
 				<div class="img-carousel">
-					<img src="{{ car.image.url }}" class="d-block w-100" alt="...">
+					<img src="{% version car.image "carousel" %}" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-caption p-2">
 					<h1>{{ car.title }}</h1>

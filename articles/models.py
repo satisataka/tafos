@@ -45,7 +45,7 @@ class Article(models.Model):
 	image = FileBrowseField(
 		"Изображение",
 		max_length=200,
-		directory="images_cover/",
+		directory="articles_cover/",
 		extensions=['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
 		format='image',
 		blank=True

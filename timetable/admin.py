@@ -62,7 +62,7 @@ class TimeTableAdmin(admin.ModelAdmin):
 	inlines = [TimeTableItemInline]
 	formfield_overrides = {
 		# 'rows':20, 'cols':5
-		models.DateField: {'widget': DateInput(attrs={
+		models.DateField: {'widget': DateInput(format='%Y-%m-%d', attrs={
 			'type': 'date',
 			'style':
 				'''

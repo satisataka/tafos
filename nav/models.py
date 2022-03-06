@@ -10,22 +10,9 @@ class Menu(models.Model):
 	hide = models.BooleanField(verbose_name='Скрыть', default=False)
 
 	class Meta:
-		verbose_name = 'Меню'
+		verbose_name = 'Настройка Меню'
 		verbose_name_plural = 'Меню'
 		ordering = ['order', 'name']
-	"""
-	def save(self, *args, **kwargs):
-		'''
-		Расставляем по позиции MenuItem, после сохранения
-		'''
-		super(Menu, self).save(*args, **kwargs)
-
-		current = 1
-		for item in MenuItem.objects.filter(menu=self).order_by('order'):
-			item.order = current
-			item.save()
-			current += 1
-	"""
 
 	def __str__(self):
 		return self.name

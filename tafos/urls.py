@@ -33,10 +33,7 @@ urlpatterns = [
 	path('tinymce/', include('tinymce.urls')),
 	path('admin1482839/', admin.site.urls),
 	path('', include('main.urls')),
-]
-
-if settings.DEBUG:
-	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
 	path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),

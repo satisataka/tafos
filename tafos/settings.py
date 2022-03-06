@@ -227,7 +227,7 @@ FILEBROWSER_VERSIONS = {
 	'article': {'verbose_name': 'Для статьи (750px)', 'width': 750, 'height': '', 'opts': ''},
 	'carousel': {'verbose_name': 'Для карусели (1080px)', 'width': 1080, 'height': '', 'opts': ''},
 }
-FILEBROWSER_ADMIN_VERSIONS = ['thumbnail']
+FILEBROWSER_ADMIN_VERSIONS = ['article']
 FILEBROWSER_EXTENSIONS = {
 	'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
 	'Document': ['.pdf', '.doc', '.rtf', '.txt', '.xls', '.csv'],
@@ -238,6 +238,3 @@ FILEBROWSER_EXTENSIONS = {
 GRAPPELLI_INDEX_DASHBOARD = 'tafos.dashboard.CustomIndexDashboard'
 GRAPPELLI_ADMIN_TITLE = 'Введенский храм'
 GRAPPELLI_CLEAN_INPUT_TYPES = False
-
-
-

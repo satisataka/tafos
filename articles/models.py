@@ -43,7 +43,7 @@ class Article(models.Model):
 	rubric = models.ForeignKey('Rubric', default='', on_delete=models.PROTECT, verbose_name='Рубрики')
 	published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликовано')
 	image = FileBrowseField(
-		"Изображение",
+		"Обложка статьи",
 		max_length=200,
 		directory="articles_cover/",
 		extensions=['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
@@ -58,22 +58,3 @@ class Article(models.Model):
 
 	def __str__(self):
 		return self.title
-
-
-	"""def title_and_price(self):
-		if self.price:
-			return '{} ({:,.0f} руб.)'.format(self.title, self.price).replace(',', ' ')
-		else:
-			return self.title
-
-	title_and_price.short_description = 'Название и цена'"""
-
-	"""def clean(self):
-		errors = {}
-		if not self.content:
-			errors['content'] = ValidationError('Укажите описание')
-		if not self.price or self.price < 0:
-			errors['price'] = ValidationError('Укажите правильную цену')
-
-		if errors:
-			raise ValidationError(errors)"""

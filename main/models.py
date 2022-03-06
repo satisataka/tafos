@@ -4,7 +4,7 @@ from filebrowser.fields import FileBrowseField
 
 class Сarousel(models.Model):
 	url = models.CharField('URL', max_length=100, db_index=True, help_text='Ссылка, например: /about/history/', default='')
-	title = models.CharField(max_length=50, unique=True, verbose_name='Заголовок')
+	title = models.TextField(max_length=60, unique=True, verbose_name='Информация (всего 50 символов)')
 	order = models.PositiveSmallIntegerField(db_index=True, default=1, unique=True, verbose_name='Позиция', help_text='Выберете позицию для сортировки')
 
 	image = FileBrowseField(

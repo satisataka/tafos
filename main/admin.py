@@ -30,6 +30,24 @@ class СarouselAdmin(admin.ModelAdmin):
 	list_display_links = ('title',)
 	list_editable = ('order',)
 
+	formfield_overrides = {
+		models.TextField: {'widget': TinyMCE(
+			attrs={'cols': 80, 'rows': 30},
+			mce_attrs={
+				'style_formats': [{'title': 'Текст', 'format': 'p'}],
+				'min_height': 80,
+				'height': 150,
+				'width': 500,
+				'toolbar': "",
+				'plugins':
+					'''
+					wordcount nonbreaking paste
+					''',
+
+			}
+		)},
+	}
+
 
 admin.site.register(Сarousel, СarouselAdmin)
 admin.site.unregister(FlatPage)

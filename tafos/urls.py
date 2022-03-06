@@ -26,6 +26,9 @@ handler403 = 'main.views.custom_permission_denied_view'
 handler400 = 'main.views.custom_bad_request_view'
 
 urlpatterns = [
+
+	path('pages/', include('django.contrib.flatpages.urls')),
+
 	path('admin/filebrowser/', site.urls),
 	path('grappelli/', include('grappelli.urls')),
 	path('tinymce/', include('tinymce.urls')),

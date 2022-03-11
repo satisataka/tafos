@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ru">
+<html prefix="og: http://ogp.me/ns#">
 <!-- Head -->
 <head>
 	<meta charset="UTF-8">
@@ -57,7 +58,9 @@
 			}
 		}, true)
 	</script>
+	{% block  open_graph %}
 
+	{% endblock %}
 </head>
 <body>
 

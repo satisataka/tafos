@@ -7,7 +7,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="{{ request.build_absolute_uri }}" />
 {% if article.image %}
-	<meta property="og:image" content="{{ article.image.path_full }}"/>
+	<meta property="og:image" content="https://satisataka.ru/{{ article.image.url }}"/>
 {% else %}
 	<meta property="og:image" content="https://satisataka.ru/{% static 'main/placeholder.jpg' %}"/>
 {% endif %}

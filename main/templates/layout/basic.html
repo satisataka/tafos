@@ -53,7 +53,7 @@
 		}, true)
 	</script>
 	{% block  open_graph %}
-		<meta property="og:title" content="Введенский Храм | Главная страница"/>
+		<meta property="og:title" content="Главная страница | Введенский Храм"/>
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="{{ request.build_absolute_uri }}" />
 		<meta property="og:image" content="https://{{ request.site }}{% static 'main/placeholder.jpg' %}"/>
@@ -61,6 +61,11 @@
 		<meta property="og:image:height" content="1203" />
 		<meta property="og:site_name" content="Введенский Храм"/>
 		<meta property="og:description" content="Официальный сайт Введенского Храма"/>
+
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Главная страница | Введенский Храм">
+		<meta name="twitter:description" content="Официальный сайт Введенского Храма">
+		<meta name="twitter:image:src" content="https://{{ request.site }}{% static 'main/placeholder.jpg' %}">
 
 	{% endblock %}
 </head>

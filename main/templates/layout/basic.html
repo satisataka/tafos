@@ -56,7 +56,7 @@
 		<meta property="og:title" content="Главная страница | Введенский Храм"/>
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="{{ request.build_absolute_uri }}" />
-		<meta property="og:image" content="{% static 'main/placeholder.jpg' %}"/>
+		<meta property="og:image" content="https://{{ request.site }}{% static 'main/placeholder.jpg' %}"/>
 		<meta property="og:image:width" content="1800" />
 		<meta property="og:image:height" content="1203" />
 		<meta property="og:site_name" content="Введенский Храм"/>
@@ -65,7 +65,7 @@
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:title" content="Главная страница | Введенский Храм">
 		<meta name="twitter:description" content="Введенский Храм - Одна из жемчужин Богородицы">
-		<meta name="twitter:image:src" content="{% static 'main/placeholder.jpg' %}">
+		<meta name="twitter:image:src" content="https://{{ request.site }}{% static 'main/placeholder.jpg' %}">
 
 	{% endblock %}
 </head>

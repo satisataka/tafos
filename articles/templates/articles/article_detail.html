@@ -7,9 +7,9 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="{{ request.build_absolute_uri }}" />
 {% if article.image %}
-	<meta property="og:image" content="{{ article.image.url }}"/>
+	<meta property="og:image" content="{{ article.image.path_full }}"/>
 {% else %}
-	<meta property="og:image" content="{% static 'main/placeholder.jpg' %}"/>
+	<meta property="og:image" content="https://satisataka.ru/{% static 'main/placeholder.jpg' %}"/>
 {% endif %}
 <meta property="og:description" content="{{ article.description }}"/>
 <meta property="og:site_name" content="Официальный сайт Введенского Храма"/>

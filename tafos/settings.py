@@ -2,7 +2,6 @@ import os
 import environ
 from pathlib import Path
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -192,6 +191,7 @@ FILEBROWSER_VERSIONS = {
 	'cover': {'verbose_name': 'Для обложки (400px)', 'width': 500, 'height': '', 'opts': ''},
 	'article': {'verbose_name': 'Для статьи (750px)', 'width': 750, 'height': '', 'opts': ''},
 	'carousel': {'verbose_name': 'Для карусели (1920px)', 'width': 1920, 'height': '', 'opts': ''},
+	'open_graph': {'verbose_name': 'open_graph(1200x630px)', 'width': 1200, 'height': 630, 'opts': 'crop'},
 }
 FILEBROWSER_ADMIN_VERSIONS = ['article']
 FILEBROWSER_EXTENSIONS = {

@@ -16,13 +16,7 @@
 
 	<script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
 	<script src="https://yastatic.net/share2/share.js" async></script>
-	<script type="text/javascript">
-		var share = Ya.share2('my-share', {
-			content: {
-					url: 'https://yandex.com'
-			}
-		});
-	</script>
+
 	<script type="text/javascript">
 		var prevScrollpos = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
 		window.addEventListener('scroll', function() {
@@ -59,13 +53,15 @@
 		}, true)
 	</script>
 	{% block  open_graph %}
-		<meta property="og:title" content="Главная страница"/>
+		<meta property="og:title" content="Введенский Храм | Главная страница"/>
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="{{ request.build_absolute_uri }}" />
 		<meta property="og:image" content="https://{{ request.site }}{% static 'main/placeholder.jpg' %}"/>
 		<meta property="og:image:width" content="400" />
 		<meta property="og:image:height" content="300" />
-		<meta property="og:site_name" content="Официальный сайт Введенского Храма"/>
+		<meta property="og:site_name" content="Введенский Храм"/>
+		<meta property="og:description" content="Официальный сайт Введенского Храма"/>
+
 	{% endblock %}
 </head>
 <body>

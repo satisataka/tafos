@@ -30,4 +30,3 @@ class TimetableWeekArchiveView(WeekArchiveView):
 		print(self.url)
 		print(self.__dict__)
 		return c
-

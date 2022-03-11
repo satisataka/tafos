@@ -20,6 +20,8 @@ from django.conf.urls.static import static
 from filebrowser.sites import site
 from django.contrib.flatpages import views
 
+from tafos.settings import DEBUG
+
 handler404 = 'main.views.custom_page_not_found_view'
 handler500 = 'main.views.custom_error_view'
 handler403 = 'main.views.custom_permission_denied_view'
@@ -33,6 +35,7 @@ urlpatterns = [
 	path('', include('main.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += [
-	path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
-]
+if not DEBUG:
+	urlpatterns += [
+		path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
+	]

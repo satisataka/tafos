@@ -63,4 +63,5 @@ def get_items(current_path):
 		cache.set(cache_key, menuitems, cache_time)
 	return menuitems
 
+
 register.tag('menu', build_menu)

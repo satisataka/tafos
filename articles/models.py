@@ -1,8 +1,6 @@
 from django.db import models
 from tinymce.models import HTMLField
-
 from filebrowser.fields import FileBrowseField
-
 
 
 class Author(models.Model):
@@ -29,9 +27,6 @@ class Rubric(models.Model):
 		verbose_name_plural = 'Рубрики'
 		verbose_name = 'Рубрика'
 		ordering = ['order', 'name']
-
-
-"validators=[validators.RegexValidator(regex='^.{4,}$')],"
 
 
 class Article(models.Model):

@@ -1,6 +1,5 @@
 from nav.models import Menu, MenuItem
 from django import template
-from django.core.cache import cache
 
 
 register = template.Library()
@@ -31,7 +30,13 @@ class BreadCrumbsObject(template.Node):
 							menu_item = item
 					if menu_item:
 						current_path = current_path.replace(menu_item.slug + '/', '', 1)
-						context['crumbs'] = [{'menu_slug': menu.slug, 'menu_name': menu.name, 'menu_item_slug': menu_item.slug, 'menu_item_name': menu_item.title, 'current_path': current_path}]
+						context['crumbs'] = [{
+							'menu_slug': menu.slug,
+							'menu_name': menu.name,
+							'menu_item_slug': menu_item.slug,
+							'menu_item_name': menu_item.title,
+							'current_path': current_path
+						}]
 					else:
 						context['crumbs'] = [{'menu_slug': menu.slug, 'menu_name': menu.name, 'current_path': current_path}]
 				else:

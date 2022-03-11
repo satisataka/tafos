@@ -7,7 +7,6 @@ from .models import Сarousel
 
 
 class TinyMCEFlatPageAdmin(FlatPageAdmin):
-	# form = TinyMCEFlatPageAdminForm
 	fieldsets = (
 		(None, {'fields': ('url', 'title', 'content', 'sites')}),
 	)
@@ -44,7 +43,6 @@ class СarouselAdmin(admin.ModelAdmin):
 					'''
 					wordcount nonbreaking paste
 					''',
-
 			}
 		)},
 	}
@@ -53,4 +51,3 @@ class СarouselAdmin(admin.ModelAdmin):
 admin.site.register(Сarousel, СarouselAdmin)
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, TinyMCEFlatPageAdmin)
-

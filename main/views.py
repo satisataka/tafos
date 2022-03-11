@@ -2,9 +2,9 @@ from django.views.generic import ListView
 from nav.models import MenuItem, Menu
 from django.views.generic.base import TemplateView
 from .models import Сarousel
-from timetable.models import TimeTable, TimeTableItem
+from timetable.models import TimeTableItem
 from articles.models import Article
-from datetime import datetime, date, time, timedelta
+from datetime import datetime, timedelta
 from django.shortcuts import render
 
 

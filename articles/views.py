@@ -1,17 +1,6 @@
-from django.shortcuts import render
-from io import TextIOWrapper
-from django import template
-from django.db import models
-from django.http import HttpResponseRedirect, HttpResponse
-from django.template import loader
-from django.shortcuts import render
-from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy, reverse
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
-from django.core.paginator import Paginator
-
-from .models import Article, Author, Rubric
+from .models import Article, Rubric
 
 
 class ArticlesListView(ListView):

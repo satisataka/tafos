@@ -11,10 +11,7 @@
 	{% endif %}
 {% endblock %}
 
-
-
 {% block content %}
-
 <div class="rubrics ">
 	{% if active_rubric %}
 		<a class="btn btn-rubric mb-2" href="{% url 'all_articles' %}" role="button">Все</a>
@@ -30,7 +27,6 @@
 		{% endif %}
 	{% endfor %}
 </div>
-
 
 <div class='post-content'>
 	{% for article in all_articles %}
@@ -58,7 +54,6 @@
 	</div>
 	{% endfor %}
 </div>
-
 
 {% if page_obj.has_previous or page_obj.has_next %}
 <div class='paginator max'>
@@ -122,6 +117,5 @@
 	</ul>
 </nav>
 </div>
-
 {% endif %}
 {% endblock %}

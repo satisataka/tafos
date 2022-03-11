@@ -3,8 +3,6 @@ from datetime import date
 
 from .views import TimetableWeekArchiveView
 
-
-
 urlpatterns = [
 	path('', TimetableWeekArchiveView.as_view(
 		year=int(date.today().year),

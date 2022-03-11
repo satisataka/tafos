@@ -1,26 +1,16 @@
 import os
+import environ
 from pathlib import Path
 
+env = environ.Env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Take environment variables from .env file
+env.read_env(BASE_DIR / '.env')
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=l$hxz2gyo7&%_ix*^*6r661kjnjd03=5!vzynn-0$5nh!*2z_'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-if DEBUG:
-	ALLOWED_HOSTS = []
-else:
-	ALLOWED_HOSTS = ['194.58.122.168', 'satisataka.ru']
-
-
-# Application definition
+DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 INSTALLED_APPS = [
 	'django.contrib.contenttypes',
@@ -34,7 +24,6 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
-
 	'main.apps.MainConfig',
 	'timetable.apps.TimetableConfig',
 	'nav.apps.NavConfig',
@@ -60,10 +49,7 @@ CACHES = {
 	}
 }
 
-if DEBUG:
-	SITE_ID = 2
-else:
-	SITE_ID = 1
+SITE_ID = env.int('SITE_ID')
 
 ROOT_URLCONF = 'tafos.urls'
 
@@ -85,29 +71,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tafos.wsgi.application'
 
-
 # Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if DEBUG:
-	DATABASES = {
-		'default': {
-			'ENGINE': 'django.db.backends.sqlite3',
-			'NAME': BASE_DIR / 'db.tafos',
-		}
-	}
-else:
-	DATABASES = {
-		'default': {
-			'ENGINE': 'django.db.backends.postgresql_psycopg2',
-			'NAME': 'tafos_db',
-			'USER': 'tafos',
-			'PASSWORD': 'tafos_db_password_kozlov',
-			'HOST': 'localhost',
-			'PORT': '',
-		}
-	}
-
-ADMINS = [('Artem Kozlov', 'kozlov0013@gmail.com'), ]
+DATABASES = {
+	'default': env.db()
+}
+ADMINS = [x.split(':') for x in env.list('DJANGO_ADMINS')]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -126,10 +94,6 @@ AUTH_PASSWORD_VALIDATORS = [
 	},
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
@@ -140,7 +104,6 @@ USE_L10N = True
 
 USE_TZ = True
 TIME_ZONE = 'Europe/Moscow'
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -239,15 +202,12 @@ GRAPPELLI_INDEX_DASHBOARD = 'tafos.dashboard.CustomIndexDashboard'
 GRAPPELLI_ADMIN_TITLE = 'Введенский храм'
 GRAPPELLI_CLEAN_INPUT_TYPES = False
 
-
-# setting https
-
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_RELOAD = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-
+# secure settings
+SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', False)
+SECURE_HSTS_SECONDS = env.int('SECURE_HSTS_SECONDS', 0)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool('SECURE_HSTS_INCLUDE_SUBDOMAINS', False)
+SECURE_HSTS_RELOAD = env.bool('SECURE_HSTS_RELOAD', False)
+SECURE_BROWSER_XSS_FILTER = env.bool('SECURE_BROWSER_XSS_FILTER', False)
+SECURE_REFERRER_POLICY = env.str('SECURE_REFERRER_POLICY', None)
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', False)
+SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', False)

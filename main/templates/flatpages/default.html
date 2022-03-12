@@ -1,12 +1,30 @@
 {% extends "layout/basic.html" %}
-{% block title %} {{ flatpage.title }} {% endblock %}
-{% block title_category %}{{ block.super }} {{ flatpage.title }} {% endblock %}
+{% load fb_versions %}
 
+{% block title %}{{ flatpage.title }}{% endblock %}
+{% block description %}{{ flatpage.content|striptags|truncatechars:150 }}{% endblock %}
+
+{% block og_title %}{{ flatpage.title }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_description %}{{ flatpage.content|striptags|truncatechars:200 }}{% endblock %}
+{% block twitter_title %}{{ flatpage.title }}{% endblock %}
+{% block twitter_description %}{{ flatpage.content|striptags|truncatechars:160 }}{% endblock %}
+{% block og_image %}{% if flatpage.newflatpage.image %}{% version flatpage.newflatpage.image "open_graph" %}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block twitter_image %}{% if flatpage.newflatpage.image %}{% version flatpage.newflatpage.image "open_graph" %}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block vk_image %}{% if flatpage.newflatpage.image %}{% version flatpage.newflatpage.image "open_graph_vk" %}{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block title_category %}{{ block.super }}{{ flatpage.title }}{% endblock %}
 
 {% block content %}
 <div class='post-content'>
-	<div class='article-text'>
+		{% if flatpage.newflatpage.image %}
+		<div class="cover text-center p-3 my-3">
+			{% load fb_versions %}
+			<a class="lightzoom" href="{{ flatpage.newflatpage.image.url }}">
+				<img src="{% version flatpage.newflatpage.image "article" %}">
+			</a>
+		</div>
+		{% endif %}
 		{{ flatpage.content |safe }}
-	</div>
 </div>
 {% endblock %}

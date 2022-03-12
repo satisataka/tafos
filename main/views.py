@@ -22,7 +22,7 @@ class MenuItemView(ListView):
 		context = super(MenuItemView, self).get_context_data(**kwargs)
 		if self.kwargs.get('menu'):
 			active_menu = Menu.objects.get(slug=self.kwargs['menu'])
-			context['active_menu'] = {'name': active_menu.name}
+			context['active_menu'] = {'name': active_menu.name, 'description': active_menu.description}
 		return context
 
 

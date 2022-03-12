@@ -1,7 +1,19 @@
 {% extends "layout/basic.html" %}
+
+{% block title %}ОШИБКА 400{% endblock %}
+{% block description %}ОШИБКА 400 - не корректный запрос{% endblock %}
+
+{% block og_title %}ОШИБКА 400{% endblock %}
+{% block og_type %}website{% endblock %}
+{% block og_description %}ОШИБКА 400 - не корректный запрос{% endblock %}
+{% block twitter_title %}ОШИБКА 400{% endblock %}
+{% block twitter_description %}ОШИБКА 400 - не корректный запрос{% endblock %}
+{% block og_image %}{% static 'main/placeholder.jpg' %}{% endblock %}
+{% block twitter_image %}{% static 'main/placeholder.jpg' %}{% endblock %}
+{% block vk_image %}{% static 'main/placeholder_vk.jpg' %}{% endblock %}
+
 {% block title_category %}{{ block.super }}ОШИБКА 400{% endblock %}
 {% block breadcrumbs %}{% endblock %}
-
 {% block content %}
 <h1 class="text-center my-5"><strong>Извините, не корректный запрос</strong></h1>
 <div class="col-12 text-center my-2">

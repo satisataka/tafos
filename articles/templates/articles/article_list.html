@@ -1,15 +1,20 @@
 {% extends "layout/basic.html" %}
-{% block title %} Новости {% endblock %}
-{% block title_category %}{{ block.super }} Новости Обители {% endblock %}
+{% load static %}
 
-{% block breadcrumbs %}
-	{{ block.super }}
-	{% if active_rubric.slug %}
-	<li class="breadcrumb-item active" aria-current="page">
-			{{ active_rubric.name }}
-	</li>
-	{% endif %}
-{% endblock %}
+{% block title %}Новости Обители{% endblock %}
+{% block description %}Новости Обители - {{ rubric|join:", "|lower }}{% endblock %}
+
+{% block og_title %}Новости Обители{% endblock %}
+{% block og_type %}website{% endblock %}
+{% block og_description %}Новости Обители - {{ rubric|join:", "|lower }}{% endblock %}
+{% block twitter_title %}Новости Обители{% endblock %}
+{% block twitter_description %}Новости Обители - {{ rubric|join:", "|lower }}{% endblock %}
+{% block og_image %}{% static 'main/placeholder_news.jpg' %}{% endblock %}
+{% block twitter_image %}{% static 'main/placeholder_news.jpg' %}{% endblock %}
+{% block vk_image %}{% static 'main/placeholder_news_vk.jpg' %}{% endblock %}
+
+{% block title_category %}<h1>Новости Обители</h1>{% endblock %}
+{% block breadcrumbs %}{{ block.super }}{% if active_rubric.slug %}<li class="breadcrumb-item active" aria-current="page">{{ active_rubric.name }}</li>{% endif %}{% endblock %}
 
 {% block content %}
 <div class="rubrics ">

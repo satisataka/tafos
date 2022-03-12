@@ -4,11 +4,23 @@
 <html prefix="og: http://ogp.me/ns#">
 <!-- Head -->
 <head>
-	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{% block title %} Главная {% endblock %} | Введенский храм </title>
+	<title>{% block title %}Главная{% endblock %} | Введенский храм</title>
+	<meta name="keywords" content="Введенский Храм Введения во храм Пресвятой Богородицы деревня село Рыжево Егорьевск православный РПЦ церковь храм коломенская епархия русская феофан кузнецов рассписание">
+	<meta name="description" content="{% block description %}Официальный сайт Введения во храм Пресвятой Богородицы, село Рыжево, город Егорьевск. История и современность, рассписание, новости и половничество.{% endblock %}">
+	<link rel="apple-touch-icon" sizes="180x180" href="{%static "main/favicon/apple-touch-icon.png" %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{%static "main/favicon/favicon-32x32.png" %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{%static "main/favicon/favicon-16x16.png" %}">
+	<link rel="manifest" href="{%static "main/favicon/site.webmanifest" %}">
+	<link rel="mask-icon" href="{%static "main/favicon/safari-pinned-tab.svg" %}" color="#306048">
+	<meta name="apple-mobile-web-app-title" content="Введенский Храм">
+	<meta name="application-name" content="Введенский Храм">
+	<meta name="msapplication-TileColor" content="#306048">
+	<meta name="msapplication-TileImage" content="{%static "main/favicon/mstile-144x144.png" %}">
+	<meta name="theme-color" content="#ffffff">
+
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="shortcut icon" href="{%static "main/favicon.svg" %}" />
 	<link rel="stylesheet" type="text/css" href={% static 'main/style.css' %} charset="utf-8" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -52,19 +64,20 @@
 			}
 		}, true)
 	</script>
-	{% block  open_graph %}
-		<meta property="og:title" content="Главная страница | Введенский Храм"/>
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="{{ request.build_absolute_uri }}"/>
-		<meta property="og:image" content="https://{{ request.site }}{% static 'main/placeholder.jpg' %}"/>
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
-		<meta property="og:description" content="Введенский Храм - Одна из жемчужин Богородицы"/>
-		<meta name="twitter:title" content="Главная страница | Введенский Храм">
-		<meta name="twitter:description" content="Введенский Храм - Одна из жемчужин Богородицы">
-	{% endblock %}
+	<meta property="og:locale" content="ru_RU">
 	<meta property="og:site_name" content="Введенский Храм"/>
+	<meta property="og:title" content="{% block og_title %}Главная страница{% endblock %} | Введенский Храм"/>
+	<meta property="og:type" content="{% block og_type %}website{% endblock %}"/>
+	<meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+	<meta property="og:description" content="{% block og_description %}Введенский Храм - Одна из жемчужин Богородицы{% endblock %}"/>
 	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="{% block twitter_title %}Главная страница{% endblock %} | Введенский Храм">
+	<meta name="twitter:description" content="{% block twitter_description %}Введенский Храм - Одна из жемчужин Богородицы{% endblock %}">
+	<meta property="og:image" content="https://{{ request.site }}{% block og_image %}{% static 'main/placeholder.jpg' %}{% endblock %}"/>
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta name="twitter:image" content="https://{{ request.site }}{% block twitter_image %}{% static 'main/placeholder.jpg' %}{% endblock %}">
+	<meta name="vk:image" content="https://{{ request.site }}{% block vk_image %}{% static 'main/placeholder_vk.jpg' %}{% endblock %}">
 </head>
 <body>
 
@@ -160,9 +173,9 @@
 						window.scrollTo(0,0);
 					};
 				</script>
-				{% block title_category %}
+
 				<div class="title-category">
-					<p class="fs-1">{% endblock %}</p>
+					{% block title_category %}<p class="fs-1">{% endblock %}</p>
 				</div>
 				<div class="main-content pb-3 my-2 mx-4 mx-md-5">
 				{% block content %}

@@ -1,7 +1,16 @@
 {% extends "layout/basic.html" %}
+
+{% block title %}ОШИБКА 403{% endblock %}
+{% block description %}ОШИБКА 403 - страница не доступна{% endblock %}
+
+{% block og_title %}ОШИБКА 403{% endblock %}
+{% block og_type %}website{% endblock %}
+{% block og_description %}ОШИБКА 403 - страница не доступна{% endblock %}
+{% block twitter_title %}ОШИБКА 403{% endblock %}
+{% block twitter_description %}ОШИБКА 403 - страница не доступна{% endblock %}
+
 {% block title_category %}{{ block.super }}ОШИБКА 403{% endblock %}
 {% block breadcrumbs %}{% endblock %}
-
 {% block content %}
 <h1 class="text-center my-5"><strong>Извините, страница не доступна</strong></h1>
 <div class="col-12 text-center my-2">

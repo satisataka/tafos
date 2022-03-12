@@ -29,7 +29,9 @@ INSTALLED_APPS = [
 	'timetable.apps.TimetableConfig',
 	'nav.apps.NavConfig',
 	'articles.apps.ArticlesConfig',
+	'flatpage_tafos.apps.FlatpageTafosConfig',
 	'tinymce',
+
 ]
 
 MIDDLEWARE = [
@@ -150,7 +152,6 @@ TINYMCE_DEFAULT_CONFIG = {
 		'aligncenter': {'selector': 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', 'classes': 'text-center'},
 		'alignright': {'selector': 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', 'classes': 'text-end'},
 		'alignjustify': {'selector': 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', 'classes': 'text-justify'},
-
 		'bold': {'inline': 'span', 'classes': 'fw-bold'},
 		'italic': {'inline': 'span', 'classes': 'fst-italic'},
 		'underline': {'inline': 'span', 'classes': 'text-decoration-underline'},
@@ -158,8 +159,8 @@ TINYMCE_DEFAULT_CONFIG = {
 	},
 	'style_formats': [
 		{'title': 'Текст', 'format': 'p'},
-		{'title': 'Заголовок', 'format': 'h2'},
-		{'title': 'Подзаголовок', 'format': 'h3'},
+		{'title': 'Подзаголовок 2', 'format': 'h2'},
+		{'title': 'Подзаголовок 3', 'format': 'h3'},
 		{'title': 'Цитата', 'format': 'blockquote'},
 	],
 	'nonbreaking_force_tab': True,
@@ -192,6 +193,7 @@ FILEBROWSER_VERSIONS = {
 	'article': {'verbose_name': 'Для статьи (750px)', 'width': 750, 'height': '', 'opts': ''},
 	'carousel': {'verbose_name': 'Для карусели (1920px)', 'width': 1920, 'height': '', 'opts': ''},
 	'open_graph': {'verbose_name': 'open_graph(1200x630px)', 'width': 1200, 'height': 630, 'opts': 'crop'},
+	'open_graph_vk': {'verbose_name': 'open_graph_vk(1200x536px)', 'width': 1200, 'height': 536, 'opts': 'crop'},
 }
 FILEBROWSER_ADMIN_VERSIONS = ['article']
 FILEBROWSER_EXTENSIONS = {

@@ -1,7 +1,15 @@
 {% extends "layout/basic.html" %}
-{% block title %} Новости {% endblock %}
-{% block title_category %}{{ block.super }} {{ active_menu.name }} {% endblock %}
 
+{% block title %}{{ active_menu.name }}{% endblock %}
+{% block description %}{{ active_menu.description }}{% endblock %}
+
+{% block og_title %}{{ active_menu.name }}{% endblock %}
+{% block og_type %}website{% endblock %}
+{% block og_description %}{{ active_menu.description }}{% endblock %}
+{% block twitter_title %}{{ active_menu.name }}{% endblock %}
+{% block twitter_description %}П{{ active_menu.description }}{% endblock %}
+
+{% block title_category %}<h1>{{ active_menu.name }}</h1>{% endblock %}
 {% block content %}
 <div class='post-content mt-3'>
 	{% for item in menu_items %}

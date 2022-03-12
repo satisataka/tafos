@@ -1,8 +1,8 @@
 {% extends "layout/basic.html" %}
 {% load static %}
-{% block title %} Главная {% endblock %}
+{% block title %}Главная{% endblock %}
 
-{% block title_category %}{{ block.super }} Главная {% endblock %}
+{% block title_category %}<h1>Главная</h1>{% endblock %}
 
 {% block carousel %}
 
@@ -10,7 +10,6 @@
 	{% load static %}
 	<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 		<div class="carousel-inner">
-
 			{% for car in carousel %}
 			{% if car.order == 1 %}
 			<div class="carousel-item active">
@@ -21,7 +20,7 @@
 					<img src="{% version car.image "carousel" %}" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-caption p-2">
-					<h1>{{ car.title|safe }}</h1>
+					<div class="h1">{{ car.title|safe }}</div>
 					<a class="btn btn-carousel" href="{{ car.url }}">Подробнее</a>
 				</div>
 			</div>
@@ -43,8 +42,8 @@
 
 {% block content %}
 <div class="row main-home">
-	<div class="home-news col-12 col-md-8  order-2 order-md-1">
-		<div class="header col-12 text-start h2 fw-bold  mt-2 mt-md-0">Новости Обители</div>
+	<div class="home-news col-12 col-md-8 order-2 order-md-1">
+		<div class="header col-12 text-start mt-2 mt-md-0"><h2 class="fw-bold">Новости Обители</h2></div>
 		<div class='post-content'>
 			{% for article in news %}
 				<div class="cards row mb-2">
@@ -79,7 +78,7 @@
 
 	<div class="home-timetable col-12 col-md-4 order-1 order-md-2">
 		<div class="row ">
-			<div class="header col-12 text-start h2 fw-bold mb-0 ">Рассписание Богослужений</div>
+			<div class="header col-12 text-start "><h2 class="fw-bold mb-0">Рассписание Богослужений</h2></div>
 			<div class="img-timetable mt-2">
 				<img src="{% static 'main/timetable.jpg' %}" alt="">
 			</div>

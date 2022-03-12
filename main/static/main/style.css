@@ -273,6 +273,13 @@ footer .soсial-net .fa-instagram {
 	margin: 0px;
 	color: #E8D1B1 !important;
 }
+
+.title-category h1 {
+	font-family: 'balkara', 'Times New Roman', Times, serif;
+	margin: 0px;
+	color: #E8D1B1 !important;
+	line-height: var(--bs-body-line-height);
+}
 article {
 	background-color: white;
 	border-radius: 0px 0px 8px 8px;
@@ -555,8 +562,11 @@ blockquote:after {
 	border-radius: 5px;
 	background-color: #00000050;
 }
-.carousel-caption h1{
+.carousel-caption .h1{
 	font-weight: 600;
+}
+.carousel-caption .h1 p{
+	margin-bottom: .5rem;
 }
 .btn-carousel{
 	transition: 0.5s;

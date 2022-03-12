@@ -1,14 +1,20 @@
-
 {% extends "layout/basic.html" %}
 {% load static %}
-{% block title %} Пожертвовать{% endblock %}
-{% block title_category %}{{ block.super }} Пожертвовать {% endblock %}
-{% block breadcrumbs %}
-	{{ block.super }}
-	<li class="breadcrumb-item active d-inline-block text-truncate" style="max-width: 300px;" aria-current="page">
-		Пожертвовать
-	</li>
-{% endblock %}
+
+{% block title %}Пожертвовать{% endblock %}
+{% block description %}Пожертвуйте на востановление Введенского Храма{% endblock %}
+
+{% block og_title %}Пожертвовать{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_description %}Пожертвуйте на востановление Введенского Храма{% endblock %}
+{% block twitter_title %}Пожертвовать{% endblock %}
+{% block twitter_description %}Пожертвуйте на востановление Введенского Храма{% endblock %}
+{% block og_image %}{% static 'main/placeholder_donate.jpg' %}{% endblock %}
+{% block twitter_image %}{% static 'main/placeholder_donate.jpg' %}{% endblock %}
+{% block vk_image %}{% static 'main/placeholder_donate_vk.jpg' %}{% endblock %}
+
+{% block title_category %}<h1>Пожертвовать</h1>{% endblock %}
+{% block breadcrumbs %}{{ block.super }}<li class="breadcrumb-item active d-inline-block text-truncate" style="max-width: 300px;" aria-current="page">Пожертвовать</li>{% endblock %}
 
 {% block content %}
 <div class='post-content'>

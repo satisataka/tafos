@@ -12,4 +12,3 @@ class TimetableWeekArchiveView(WeekArchiveView):
 	def get_ordering(self):
 		ordering = self.request.GET.get('-day')
 		return ordering
-

@@ -13,7 +13,7 @@
 {% block twitter_image %}{% if flatpage.newflatpage.image %}{% version flatpage.newflatpage.image "open_graph" %}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block vk_image %}{% if flatpage.newflatpage.image %}{% version flatpage.newflatpage.image "open_graph_vk" %}{% else %}{{ block.super }}{% endif %}{% endblock %}
 
-{% block title_category %}{{ block.super }}{{ flatpage.title }}{% endblock %}
+{% block title_category %}<h1>{{ flatpage.title }}</h1>{% endblock %}
 
 {% block content %}
 <div class='post-content'>
@@ -21,7 +21,7 @@
 		<div class="cover text-center p-3 my-3">
 			{% load fb_versions %}
 			<a class="lightzoom" href="{{ flatpage.newflatpage.image.url }}">
-				<img src="{% version flatpage.newflatpage.image "article" %}">
+				<img src="{% version flatpage.newflatpage.image "article" %}" alt="{{ flatpage.title }}">
 			</a>
 		</div>
 		{% endif %}

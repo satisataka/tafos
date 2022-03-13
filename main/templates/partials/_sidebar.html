@@ -1,0 +1,23 @@
+<div class="container-xxl text-center text-md-start pt-4">
+	<div class="menu-foot d-none d-xl-block pb-2">
+		<div class="row">
+		{% load menubuilder %}{% menu %}
+			{% for menu in menuitems %}
+			<div class="col-md-auto mx-auto mb-auto">
+				{% if menu.menu_item %}
+					<h6 class="text-uppercase fw-bold">{{ menu.menu_name }}</h6>
+					{% for item in menu.menu_item %}
+						{% if item.redirect_url %}
+							<p><a href="{{ item.redirect_url }}" class="text-reset ">{{ item.title }}</a></p>
+						{% else %}
+							<p><a href="/{{ menu.menu_slug }}/{{ item.slug }}" class="text-reset ">{{ item.title }}</a></p>
+						{% endif %}
+					{% endfor %}
+				{% else %}
+					<h6 class="text-uppercase fw-bold"><a href="{% url 'menu_list' menu.menu_slug %}" class="text-reset">{{ menu.menu_name }}</a></h6>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

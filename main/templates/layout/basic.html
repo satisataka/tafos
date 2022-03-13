@@ -93,194 +93,79 @@
 	<meta name="vk:image" content="https://{{ request.site }}{% block vk_image %}{% static 'main/placeholder_vk.jpg' %}{% endblock %}">
 </head>
 <body>
-
+	<!-- Logo -->
+	{% include 'partials/_topbar.html' %}
 	<!-- Header -->
-	<div class="logo">
-		<div class="container">
-			<a href="{% url 'index' %}">
-				<img src="{% static "main/logo.svg" %}" class="img-fluid" alt="Responsive image">
-			</a>
-		</div>
-	</div>
-
 	<header>
-		<nav id="navbar" class="navbar navbar-expand-md navbar-light" aria-label="navbar">
-		<div class="container col-md-auto flex-wrap flex-md-nowrap ">
-			<div id="fake-nav"></div>
-			<a class="btn navbar-brand d-md-none d-xxl-block" href="{% url 'index' %}">
-				<img src="{% static "main/icon.svg" %}" alt="" width="41" height="41" >
-			</a>
-			<button id="btn-navbar" class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navtarg" aria-controls="navtarg" aria-expanded="false" aria-label="Переключатель навигации">
-				<span class="close-nav">
-					<i class="fas fa-times " aria-hidden="true"></i>
-				</span>
-				<span class="open-nav">
-					<i class="fas fa-bars" aria-hidden="true"></i>
-				</span>
-			</button>
-			<div class="collapse navbar-collapse" id="navtarg">
-				<ul class=" navbar-nav navbar-nav-scroll flex-wrap justify-content-md-center">
-				{% load menubuilder %}{% menu %}
-					{% for menu in menuitems %}
-						<li class="nav-item dropdown">
-							{% if menu.menu_item %}
-								<a class="btn nav-link disabled_butt active" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ menu.menu_name }}</a>
-								<ul class="dropdown-menu dropdown-menu-lg-right " aria-labelledby="dropdown">
-									{% for item in menu.menu_item %}
-										{% if item.redirect_url %}
-										<li><a class="dropdown-item" href="{{ item.redirect_url }}" >{{ item.title }}</a></li>
-										{% else %}
-											<li><a class="dropdown-item" href="/{{ menu.menu_slug }}/{{ item.slug }}" >{{ item.title }}</a></li>
-										{% endif %}
-									{% endfor %}
-								</ul>
-							{% else %}
-								<a class="btn nav-link active" aria-current="page" href="{% url 'menu_list' menu.menu_slug %}">{{ menu.menu_name }}</a>
-							{% endif %}
-						</li>
-					{% endfor %}
-					<li class="nav-item dropdown">
-						<a class="btn nav-link active btn-donate" aria-current="page" href="{% url 'donate' %}">Пожертвовать</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		</nav>
+	{% include 'partials/_navbar.html' %}
 	</header>
 	<div class="content-container">
-		{% block carousel %}
-		{% endblock %}
+		<!-- Carousel -->
+		{% block carousel %}{% endblock %}
 		<div class="main-container container">
-			<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-				<ol class="breadcrumb pt-4">
-				{% block breadcrumbs %}
-				{% load breadcrumbs %}{% build_breadcrumbs %}
-						{% for crumb in crumbs %}
-							{% if crumb.menu_slug or crumb.menu_item_slug or crumb.current_path%}
-								<li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
-							{% endif %}
-							{% if crumb.menu_slug%}
-								{% if crumb.menu_item_slug or crumb.current_path %}
-									<li class="breadcrumb-item"><a href="{% url 'menu_list' crumb.menu_slug %}">{{ crumb.menu_name }}</a></li>
-								{% else %}
-									<li class="breadcrumb-item active" aria-current="page">{{ crumb.menu_name }}</li>
-								{% endif %}
-							{% endif %}
-							{% if crumb.menu_item_slug%}
-								{% if crumb.current_path %}
-									<li class="breadcrumb-item"><a href="/{{ crumb.menu_slug }}/{{crumb.menu_item_slug}}">{{ crumb.menu_item_name }}</a></li>
-								{% else %}
-									<li class="breadcrumb-item active" aria-current="page">{{ crumb.menu_item_name }}</li>
-								{% endif %}
-							{% endif %}
-
-						{% endfor %}
-				{% endblock %}
-				</ol>
-			</nav>
+			<!-- Breadcrumbs -->
+			{% include 'partials/_breadcrumbs.html' %}
 			<article>
-				<a id="btn-return" type="button" class="btn-return"><i class="fas fa-chevron-up"></i></a>
+				<div id="btn-return" type="button" class="btn-return" width="50px" height="50px"></div>
 				<script>
 					var btn = document.getElementById("btn-return");
 					btn.onclick = function() {
 						window.scrollTo(0,0);
 					};
 				</script>
-
 				<div class="title-category">
 					{% block title_category %}<p class="fs-1">{% endblock %}</p>
 				</div>
 				<div class="main-content pb-3 my-2 mx-4 mx-md-5">
 				{% block content %}
-
 				{% endblock %}
 				</div>
 			</article>
 		</div>
 	</div>
+	<script>
+		var container = document.querySelector("div.article-text");
+		let imgs = container.getElementsByTagName('img');
 
-<script>
-	var container = document.querySelector("div.article-text");
-	let imgs = container.getElementsByTagName('img');
+		for (let img of imgs) {
+			wrapper = document.createElement('a');
+			wrapper.setAttribute('class', 'lightzoom');
+			wrapper.href=img.src;
+			img.parentNode.insertBefore(wrapper, img);
+			wrapper.appendChild(img);
+		}
+	</script>
+	<script>
+		var cont = document.querySelector("div.article-text");
+		let iframes = container.getElementsByTagName('iframe');
 
-	for (let img of imgs) {
-		wrapper = document.createElement('a');
-		wrapper.setAttribute('class', 'lightzoom');
-		wrapper.href=img.src;
-		img.parentNode.insertBefore(wrapper, img);
-		wrapper.appendChild(img);
-	}
-</script>
+		for (let f of iframes) {
+			wrapper = document.createElement('div');
+			wrapper.setAttribute('class', 'video-wrapper');
+			f.parentNode.insertBefore(wrapper, f);
+			wrapper.appendChild(f);
+			wrapper = document.createElement('div');
+			wrapper.setAttribute('class', 'video-container');
+			f.parentNode.insertBefore(wrapper, f);
+			wrapper.appendChild(f);
+		}
+	</script>
+	<link rel="stylesheet" href="{% static 'lightzoom/style.css' %}" type="text/css">
+	<script type="text/javascript" src="{% static 'lightzoom/lightzoom.js' %}"></script>
+	<script type="text/javascript">jQuery('.lightzoom').lightzoom({speed: 400, viewTitle: true, isOverlayClickClosing: true, isWindowClickClosing: true, imgPadding: 0, titleColor: '#FFFAFA', boxClass: 'Text'});</script>
 
-<script>
-	var cont = document.querySelector("div.article-text");
-	let iframes = container.getElementsByTagName('iframe');
-
-	for (let f of iframes) {
-		wrapper = document.createElement('div');
-		wrapper.setAttribute('class', 'video-wrapper');
-		f.parentNode.insertBefore(wrapper, f);
-		wrapper.appendChild(f);
-		wrapper = document.createElement('div');
-		wrapper.setAttribute('class', 'video-container');
-		f.parentNode.insertBefore(wrapper, f);
-		wrapper.appendChild(f);
-	}
-</script>
-
-<link rel="stylesheet" href="{% static 'lightzoom/style.css' %}" type="text/css">
-<script type="text/javascript" src="{% static 'lightzoom/lightzoom.js' %}"></script>
-<script type="text/javascript">jQuery('.lightzoom').lightzoom({speed: 400, viewTitle: true, isOverlayClickClosing: true, isWindowClickClosing: true, imgPadding: 0, titleColor: '#FFFAFA', boxClass: 'Text'});</script>
-</body>
-<!-- Footer -->
-<footer class=" text-center text-lg-start bg-light">
-	<!-- Section: Links  -->
-	<section class=" mb-2">
-	<div class="container-xxl text-center text-md-start pt-4">
-	<!-- Grid row -->
-	<div class="menu-foot d-none d-xl-block pb-2">
-	<div class="row ">
-	<!-- Grid column -->
-	{% load menubuilder %}{% menu %}
-		{% for menu in menuitems %}
-		<div class="col-md-auto mx-auto mb-auto">
-			{% if menu.menu_item %}
-				<h6 class="text-uppercase fw-bold">{{ menu.menu_name }}</h6>
-				{% for item in menu.menu_item %}
-					{% if item.redirect_url %}
-						<p><a href="{{ item.redirect_url }}" class="text-reset ">{{ item.title }}</a></p>
-					{% else %}
-						<p><a href="/{{ menu.menu_slug }}/{{ item.slug }}" class="text-reset ">{{ item.title }}</a></p>
-					{% endif %}
-				{% endfor %}
-			{% else %}
-				<h6 class="text-uppercase fw-bold"><a href="{% url 'menu_list' menu.menu_slug %}" class="text-reset">{{ menu.menu_name }}</a></h6>
-			{% endif %}
+	<!-- Footer -->
+	<footer class=" text-center text-lg-start bg-light">
+		<section class="mb-2">
+		<!-- Sidebar  -->
+		{% include 'partials/_sidebar.html' %}
+		{% include 'partials/_footer.html' %}
+		</section>
+		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
+			<p class='m-0'><i class="far fa-copyright mx-1"></i>Дизайн и разработка: <a class="text-reset fw-bold" href="https://satisataka.ru/" target="_blank"> Козлов Артём</a></p>
 		</div>
-		{% endfor %}
-	</div>
-	</div>
-	</div>
-
-	<div class="mx-auto logo-foot">
-		<h6 class="text-uppercase mb-2 px-4">
-			<a href="{% url 'index' %}"><img src="{% static "main/logo.svg" %}" class="img-fluid" alt="Responsive image"></a>
-		</h6>
-	</div>
-	<div class="text-center soсial-net mb-2">
-		<a href="https://vk.com/schoolgorlitsa" target="_blank"><i class="fab fa-vk mx-1"></i></a>
-		<a href="https://www.instagram.com/ryzhevohram/" target="_blank"><i class="fab fa-instagram mx-1"></i></a>
-	</div>
-	<div class="text-center px-4">
-		<p class="my-1"> <i class="far fa-envelope mx-1"></i><a href="mailto:feofan@tafos.ru" class="text-reset">feofan@tafos.ru</a></p>
-		<p class="my-1"> <i class="fas fa-map-marker-alt mx-1"></i> Россия, 140342, Московская обл., Егорьевский район, дер.Рыжево, д.25Б </p>
-		<p class="my-1"> <i class="far fa-copyright mx-1"></i>2022 Официальный сайт Храма в честь Введения во храм Пресвятой Богородицы </p>
-	</div>
-	</section>
-	<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
-		<p class='m-0'><i class="far fa-copyright mx-1"></i>Дизайн и разработка: <a class="text-reset fw-bold" href="https://satisataka.ru/" target="_blank"> Козлов Артём</a></p>
-	</div>
-</footer>
+	</footer>
+</body>
 </html>
 
 

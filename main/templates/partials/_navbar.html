@@ -1,0 +1,44 @@
+{% load static %}
+
+<nav id="navbar" class="navbar navbar-expand-md navbar-light" aria-label="navbar">
+	<div class="container col-md-auto flex-wrap flex-md-nowrap ">
+		<div id="fake-nav"></div>
+		<a class="btn navbar-brand d-md-none d-xxl-block" href="{% url 'index' %}">
+			<img src="{% static "main/icon.svg" %}" alt="Маленький логитоп Введенского Храма" width="41" height="41" >
+		</a>
+		<button id="btn-navbar" class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navtarg" aria-controls="navtarg" aria-expanded="false" aria-label="Переключатель навигации">
+			<span class="close-nav">
+				<i class="fas fa-times " aria-hidden="true"></i>
+			</span>
+			<span class="open-nav">
+				<i class="fas fa-bars" aria-hidden="true"></i>
+			</span>
+		</button>
+		<div class="collapse navbar-collapse" id="navtarg">
+			<ul class=" navbar-nav navbar-nav-scroll flex-wrap justify-content-md-center">
+			{% load menubuilder %}{% menu %}
+				{% for menu in menuitems %}
+					<li class="nav-item dropdown">
+						{% if menu.menu_item %}
+							<a class="btn nav-link disabled_butt active" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ menu.menu_name }}</a>
+							<ul class="dropdown-menu dropdown-menu-lg-right " aria-labelledby="dropdown">
+								{% for item in menu.menu_item %}
+									{% if item.redirect_url %}
+									<li><a class="dropdown-item" href="{{ item.redirect_url }}" >{{ item.title }}</a></li>
+									{% else %}
+										<li><a class="dropdown-item" href="/{{ menu.menu_slug }}/{{ item.slug }}" >{{ item.title }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						{% else %}
+							<a class="btn nav-link active" aria-current="page" href="{% url 'menu_list' menu.menu_slug %}">{{ menu.menu_name }}</a>
+						{% endif %}
+					</li>
+				{% endfor %}
+				<li class="nav-item dropdown">
+					<a class="btn nav-link active btn-donate" aria-current="page" href="{% url 'donate' %}">Пожертвовать</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

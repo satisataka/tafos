@@ -32,15 +32,10 @@ header {
 .btn-return {
 	display: inline-block;
 	background-color: var(--main-green-color-light);
-	line-height: 50px;
-	width: 50px;
-	height: 50px;
+	width: 50px !important;
+	height: 50px !important;
 	border-radius: 50%;
-	font-size: 3em;
 	text-align: center;
-	font-weight: normal;
-	font-style: normal;
-	font-size: 2em;
 	color: var(--main-sand-color);
 	position: fixed;
 	bottom: 30px;
@@ -49,13 +44,23 @@ header {
 		opacity .5s, visibility .5s;
 	z-index: 1000;
 	opacity: 0;
-	visibility: ч;
 }
 .btn-return:focus,
 .btn-return:active,
 .btn-return:hover {
 	background-color: var(--main-green-color-mid);
 	color: var(--main-sand-color);
+}
+.btn-return::before {
+	content: "\f077";
+	font-family: FontAwesome;
+	font-weight: bold;
+	font-size: 30px;
+	text-align: center;
+
+	font-style: normal;
+	display: inline-block;
+	line-height: 50px;
 }
 #navbar {
 	transition: all .3s ease;
@@ -461,6 +466,7 @@ blockquote:after {
 	font-size: 1rem;
 	line-height: 1rem;
 }
+.post-content .share,
 .post-content .autor,
 .post-content .time{
 	font-size: 15px;
@@ -742,5 +748,9 @@ blockquote:after {
 	}
 	.main-content .home-timetable{
 		border: none;
+	}
+	.post-content .ya-share2__list{
+		margin-top: 10px !important;
+		padding-left: 0%;
 	}
 }

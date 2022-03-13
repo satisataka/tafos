@@ -26,7 +26,7 @@
 	<div class="cover text-center p-3 my-3">
 		{% load fb_versions %}
 		<a class="lightzoom" href="{{ article.image.url }}">
-			<img src="{% version article.image "article" %}">
+			<img src="{% version article.image "article" %}" alt="{{ article.title }}">
 		</a>
 	</div>
 	{% endif %}
@@ -35,13 +35,13 @@
 	</div>
 	{% if article.author %}
 	<div class="row mt-3 mb-2 me-1">
-		<div class='col-auto ms-auto autor'>Автор: {{ article.author }}</div>
+			<div class='autor col-auto ms-auto '>Автор: {{ article.author }} </div>
 	</div>
 	{% endif %}
+	<div class="row mt-3 mb-2 me-1">
+		<div class="col-auto ms-auto text-center ya-share2" data-curtain data-color-scheme="whiteblack" data-limit="0" data-more-button-type="long" data-services="telegram,vkontakte,odnoklassniki,whatsapp,facebook,twitter" data-size="m"></div>
+	</div>
+
 </div>
-
-<script src="https://yastatic.net/share2/share.js"></script>
-<div class="ya-share2" data-curtain data-shape="round" data-color-scheme="whiteblack" data-services="telegram"></div>
-
 </div>
 {% endblock %}

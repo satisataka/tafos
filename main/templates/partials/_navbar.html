@@ -23,11 +23,7 @@
 							<a class="btn nav-link disabled_butt active" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ menu.menu_name }}</a>
 							<ul class="dropdown-menu dropdown-menu-lg-right " aria-labelledby="dropdown">
 								{% for item in menu.menu_item %}
-									{% if item.redirect_url %}
-									<li><a class="dropdown-item" href="{{ item.redirect_url }}" >{{ item.title }}</a></li>
-									{% else %}
 										<li><a class="dropdown-item" href="/{{ menu.menu_slug }}/{{ item.slug }}" >{{ item.title }}</a></li>
-									{% endif %}
 								{% endfor %}
 							</ul>
 						{% else %}

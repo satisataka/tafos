@@ -39,7 +39,7 @@ class MenuItemInline(GrappelliSortableHiddenMixin, admin.StackedInline):
 
 		('Прочее', {
 			'classes': ('grp-collapse grp-closed',),
-			'fields': ('hide', 'order', 'redirect_url'),
+			'fields': ('hide', 'order'),
 		}),
 	)
 	sortable_field_name = "order"

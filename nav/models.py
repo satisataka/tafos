@@ -17,6 +17,9 @@ class Menu(models.Model):
 	def __str__(self):
 		return self.name
 
+	def get_absolute_url(self):
+		return f'/{self.slug}/'
+
 
 class MenuItem(models.Model):
 	menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
@@ -42,3 +45,7 @@ class MenuItem(models.Model):
 
 	def __str__(self):
 		return self.title
+
+
+	def get_absolute_url(self):
+		return f'/{self.menu.slug}/{self.slug}/'

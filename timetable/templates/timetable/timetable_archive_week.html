@@ -17,7 +17,7 @@
 {% block breadcrumbs %}{{ block.super }}
 	{% now "W" as now_week %}
 	{% now "Y" as now_year %}
-	{% if now_week != week|date:"W" or now_year != week|date:"Y" %}<li class="breadcrumb-item active" aria-current="page">Неделя {{ week|date:"W" }}, {{ week|date:"Y" }}г. {{url}}</li>{% endif %}
+	{% if now_week != week|date:"W" or now_year != week|date:"Y" %}<li class="breadcrumb-item active" aria-current="page">Неделя {{ week|date:"W" }}, {{ week|date:"Y" }}г.</li>{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -45,12 +45,12 @@
 <div class="row">
 	<div class="col-auto me-md-auto ms-md-5 mb-1">
 	{% if previous_week %}
-		<a class="btn previous-week" href="{% if now_week == previous_week|date:"W" and now_year == previous_week|date:"Y" %}{% url 'timetable_now' %}{% else %}{% url 'timetable' previous_week|date:"Y" previous_week|date:"W" %}{% endif %}">&lt; Предыдущая неделя</a>
+		<a class="btn previous-week" href="{% if now_week == previous_week|date:"W" and now_year == previous_week|date:"Y" %}{% url 'timetable:timetable_now' %}{% else %}{% url 'timetable:timetable' previous_week|date:"Y" previous_week|date:"W" %}{% endif %}">&lt; Предыдущая неделя</a>
 	{% endif %}
 	</div>
 	<div class="col-auto ms-auto ms-md-0 me-md-5 mb-1">
 	{% if next_week %}
-		<a class="btn next-week" href="{% if now_week == next_week|date:"W" and now_year == next_week|date:"Y" %}{% url 'timetable_now' %}{% else %}{% url 'timetable' next_week|date:"Y" next_week|date:"W" %}{% endif %}">Следующая неделя &gt;</a>
+		<a class="btn next-week" href="{% if now_week == next_week|date:"W" and now_year == next_week|date:"Y" %}{% url 'timetable:timetable_now' %}{% else %}{% url 'timetable:timetable' next_week|date:"Y" next_week|date:"W" %}{% endif %}">Следующая неделя &gt;</a>
 	{% endif %}
 	</div>
 </div>

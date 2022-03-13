@@ -110,11 +110,11 @@
 				{% load breadcrumbs %}{% build_breadcrumbs %}
 						{% for crumb in crumbs %}
 							{% if crumb.menu_slug or crumb.menu_item_slug or crumb.current_path%}
-								<li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+								<li class="breadcrumb-item"><a href="{% url 'main:index' %}">Главная</a></li>
 							{% endif %}
 							{% if crumb.menu_slug%}
 								{% if crumb.menu_item_slug or crumb.current_path %}
-									<li class="breadcrumb-item"><a href="{% url 'menu_list' crumb.menu_slug %}">{{ crumb.menu_name }}</a></li>
+									<li class="breadcrumb-item"><a href="{% url 'main:menu_list' crumb.menu_slug %}">{{ crumb.menu_name }}</a></li>
 								{% else %}
 									<li class="breadcrumb-item active" aria-current="page">{{ crumb.menu_name }}</li>
 								{% endif %}

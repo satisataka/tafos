@@ -3,7 +3,7 @@
 <nav id="navbar" class="navbar navbar-expand-md navbar-light" aria-label="navbar">
 	<div class="container col-md-auto flex-wrap flex-md-nowrap ">
 		<div id="fake-nav"></div>
-		<a class="btn navbar-brand d-md-none d-xxl-block" href="{% url 'index' %}">
+		<a class="btn navbar-brand d-md-none d-xxl-block" href="{% url 'main:index' %}">
 			<img src="{% static "main/icon.svg" %}" alt="Маленький логитоп Введенского Храма" width="41" height="41" >
 		</a>
 		<button id="btn-navbar" class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navtarg" aria-controls="navtarg" aria-expanded="false" aria-label="Переключатель навигации">
@@ -31,7 +31,7 @@
 								{% endfor %}
 							</ul>
 						{% else %}
-							<a class="btn nav-link active" aria-current="page" href="{% url 'menu_list' menu.menu_slug %}">{{ menu.menu_name }}</a>
+							<a class="btn nav-link active" aria-current="page" href="{% url 'main:menu_list' menu.menu_slug %}">{{ menu.menu_name }}</a>
 						{% endif %}
 					</li>
 				{% endfor %}

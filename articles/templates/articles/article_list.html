@@ -19,7 +19,7 @@
 {% block content %}
 <div class="rubrics ">
 	{% if active_rubric %}
-		<a class="btn btn-rubric mb-2" href="{% url 'all_articles' %}" role="button">Все</a>
+		<a class="btn btn-rubric mb-2" href="{% url 'articles:all_articles' %}" role="button">Все</a>
 	{% else %}
 		<span a class="btn btn-rubric disabled mb-2" role="button">Все</span>
 	{% endif %}
@@ -28,7 +28,7 @@
 		{% if active_rubric.slug == rubric.slug %}
 			<span class="btn btn-rubric disabled mb-2" role="button">{{ rubric.name }}</span>
 		{% else %}
-			<a class="btn btn-rubric mb-2" href="{% url 'rubric_articles' slug=rubric.slug %}" role="button">{{ rubric.name }}</a>
+			<a class="btn btn-rubric mb-2" href="{% url 'articles:rubric_articles' slug=rubric.slug %}" role="button">{{ rubric.name }}</a>
 		{% endif %}
 	{% endfor %}
 </div>
@@ -43,7 +43,7 @@
 			<div class="col ps-3 pe-2 py-2 pt-md-2 ">
 				<div>
 				<h5 class="rubric">{{ article.rubric }}</h5>
-				<h3 class="title"><a class="title stretched-link" href="{% url 'detail_article' slug=article.slug %}">{{ article.title }}</a></h3>
+				<h3 class="title"><a class="title stretched-link" href="{% url 'articles:detail_article' article.rubric.slug article.slug %}">{{ article.title }}</a></h3>
 				<p class="descrip lh-sm">{{ article.description }}</p>
 				</div>
 				<div class="mt-auto">

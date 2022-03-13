@@ -7,7 +7,7 @@
 				{% if menu.menu_item %}
 					<h6 class="text-uppercase fw-bold">{{ menu.menu_name }}</h6>
 					{% for item in menu.menu_item %}
-							<p><a href="/{{ menu.menu_slug }}/{{ item.slug }}" class="text-reset">{{ item.title }}</a></p>
+							<p><a href="/{{ menu.menu_slug }}/{{ item.slug }}/" class="text-reset">{{ item.title }}</a></p>
 					{% endfor %}
 				{% else %}
 					<h6 class="text-uppercase fw-bold"><a href="{% url 'main:menu_list' menu.menu_slug %}" class="text-reset">{{ menu.menu_name }}</a></h6>

@@ -1,15 +1,16 @@
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from .models import Article, Rubric
+from django.conf import settings
 
 
 class ArticlesListView(ListView):
 	model = Article
 	context_object_name = 'all_articles'
-	paginate_by = 10
+	paginate_by = settings.ARTICLE_PAGINATE_BY
 
 	def get_queryset(self):
-		qs = self.model.objects.all()
+		qs = self.model.objects.filter(status='p')
 		if self.kwargs.get('slug'):
 			qs = qs.filter(rubric__slug=self.kwargs['slug'])
 		return qs
@@ -26,3 +27,7 @@ class ArticlesListView(ListView):
 class ArticleDetailView(DetailView):
 	model = Article
 	context_object_name = 'article'
+
+	def get_queryset(self):
+		qs = self.model.objects.filter(status='p', slug=self.kwargs.get('slug'))
+		return qs

@@ -12,9 +12,16 @@
 {% block og_image %}{% if article.image %}{% version article.image "open_graph" %}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block twitter_image %}{% if article.image %}{% version article.image "open_graph" %}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block vk_image %}{% if article.image %}{% version article.image "open_graph_vk" %}{% else %}{{ block.super }}{% endif %}{% endblock %}
-
+{% block og_article %}
+	<meta property="article:published_time" content="{{ article.published }}"/>
+	<meta property="article:modified_time" content="{{ article.edit_date }}"/>
+	<meta property="article:section" content="{{ article.rubric }}"/>
+{% endblock og_article %}
 {% block title_category %}{{ block.super }}{{ article.rubric }}{% endblock %}
-{% block breadcrumbs %}{{ block.super }}<li class="breadcrumb-item active d-inline-block text-truncate" style="max-width: 300px;" aria-current="page">{{ article.title }}</li>{% endblock %}
+{% block breadcrumbs %}{{ block.super }}
+	<li class="breadcrumb-item"><a href= {% url 'articles:rubric_articles' article.rubric.slug %} >{{ article.rubric }}</a></li>
+	<li class="breadcrumb-item active d-inline-block text-truncate" style="max-width: 300px;" aria-current="page">{{ article.title }}</li>
+{% endblock %}
 
 {% block content %}
 <div class='post-content'>

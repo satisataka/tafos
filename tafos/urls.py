@@ -21,15 +21,21 @@ from filebrowser.sites import site
 from django.contrib.flatpages import views
 from django.views.generic import TemplateView
 from django.contrib.sitemaps import views as sitemap_view
-from .sitemaps import ArticleSitemap, MenuSitemap, MenuItemSitemap
 from django.views.generic.base import RedirectView
 
+import tafos.sitemaps as sitemaps
 from tafos.settings import DEBUG
 
 sitemaps = {
-	'Article': ArticleSitemap,
-	'Menu': MenuSitemap,
-	'MenuItem': MenuItemSitemap,
+	'MainPage': sitemaps.MainPageSitemap,
+	'Article': sitemaps.ArticleSitemap,
+	'Rubric': sitemaps.RubricSitemap,
+	'Menu': sitemaps.MenuSitemap,
+	'TimeTable': sitemaps.TimeTableSitemap,
+	'Static': sitemaps.StaticSitemap,
+	'ArticleList': sitemaps.ArticleListSitemap,
+	'ArticleListRubric': sitemaps.ArticleListRubricSitemap,
+	'FlatPage': sitemaps.FlatPageSitemap,
 }
 
 handler404 = 'main.views.custom_page_not_found_view'
@@ -55,5 +61,3 @@ if not DEBUG:
 	urlpatterns += [
 		path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
 	]
-
-

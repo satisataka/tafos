@@ -81,6 +81,7 @@
 	<meta property="og:site_name" content="Введенский Храм"/>
 	<meta property="og:title" content="{% block og_title %}Главная страница{% endblock %} | Введенский Храм"/>
 	<meta property="og:type" content="{% block og_type %}website{% endblock %}"/>
+	{% block og_article %}{% endblock og_article %}
 	<meta property="og:url" content="{{ request.build_absolute_uri }}"/>
 	<meta property="og:description" content="{% block og_description %}Введенский Храм - Одна из жемчужин Богородицы{% endblock %}"/>
 	<meta name="twitter:card" content="summary_large_image">

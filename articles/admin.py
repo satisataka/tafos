@@ -18,26 +18,26 @@ class ArticleAdmin(admin.ModelAdmin):
 			'classes': ('grp-collapse grp-open',),
 			'fields': ('title', 'slug', 'author', 'rubric', 'description',),
 		}),
-		('Обложка статьи', {
+		(None, {
 			'classes': ('grp-collapse grp-open',),
 			'fields': ('image',),
 		}),
-		('Основное', {
+		(None, {
 
-			'fields': ('content',),
+			'fields': ('content', 'status',),
 		}),
+
 		('Дата', {
 			'classes': ('grp-collapse grp-closed',),
-			'fields': ('published',),
+			'fields': ('creation_date', 'edit_date', 'published',),
 		}),
 	)
-
-	list_display = ('title', 'author', 'description', 'rubric', 'published')
-	list_display_links = ('title', 'author', 'description')
+	list_display = ('title', 'author', 'description', 'rubric', 'status', 'published', 'edit_date',)
+	list_display_links = ('title', 'author')
 	list_filter = ('title', 'rubric', 'author')
-	list_editable = ('rubric',)
-	search_fields = ('author', 'title', 'description')
-	readonly_fields = ('published',)
+	list_editable = ('rubric', 'status')
+	search_fields = ('title', 'description')
+	readonly_fields = ('published', 'creation_date', 'edit_date',)
 	prepopulated_fields = {'slug': ('title',)}
 
 

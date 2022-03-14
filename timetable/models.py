@@ -38,11 +38,13 @@ class TimeTable(models.Model):
 	day_of_week.short_description = "День недели"
 
 	def save(self, *args, **kwargs):
-		print(self.day_of_week())
 		super(TimeTable, self).save(*args, **kwargs)
 
 	def __str__(self):
 		return str(self.day.strftime("%d.%m.%y")) + ' (' + self.day_of_week() + ')'
+
+	def get_absolute_url(self):
+		return f'/worship/timetable/{self.day.year}/week/{self.day.isocalendar()[1]}/'
 
 
 class TimeTableItem(models.Model):

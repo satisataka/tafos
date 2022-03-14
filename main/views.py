@@ -44,7 +44,7 @@ class СarouselView(TemplateView):
 		except TimeTableItem.DoesNotExist:
 			context['timetable_tomorrow'] = None
 
-		context['news'] = Article.objects.all()[:3]
+		context['news'] = Article.objects.filter(status='p')[:3]
 		return context
 
 

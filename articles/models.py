@@ -53,8 +53,8 @@ class Article(models.Model):
 	content = HTMLField(default='', null=False, blank=False, verbose_name='Содержание')
 	rubric = models.ForeignKey('Rubric', default='', on_delete=models.PROTECT, verbose_name='Рубрика')
 	creation_date = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Дата создания')
-	edit_date = models.DateTimeField(db_index=True, verbose_name='Дата редактирования')
-	published = models.DateTimeField(db_index=True, blank=True, null=True, verbose_name='Дата публикации')
+	edit_date = models.DateTimeField(db_index=True, null=True, verbose_name='Дата редактирования')
+	published = models.DateTimeField(db_index=True, null=True, verbose_name='Дата публикации')
 	image = FileBrowseField(
 		"Обложка статьи",
 		max_length=200,
@@ -66,9 +66,7 @@ class Article(models.Model):
 	user = models.ForeignKey(
 		settings.AUTH_USER_MODEL,
 		on_delete=models.SET(get_sentinel_user),
-		default=get_user_model().objects.get_or_create(username='admin'),
 		null=False,
-		blank=False,
 		verbose_name='Пользователь',
 	)
 

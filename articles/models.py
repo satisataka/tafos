@@ -3,6 +3,12 @@ from tinymce.models import HTMLField
 from filebrowser.fields import FileBrowseField
 from datetime import datetime
 from django.utils.timezone import get_current_timezone
+from django.contrib.auth import get_user_model
+from django.conf import settings
+
+
+def get_sentinel_user():
+	return get_user_model().objects.get_or_create(username='deleted')[0]
 
 
 class Author(models.Model):
@@ -37,15 +43,15 @@ class Rubric(models.Model):
 class Article(models.Model):
 	STATUS_CHOICES = (
 		('d', 'Черновик'),
-		('p', 'Опубликовать'),
+		('p', 'Опубликовано'),
 	)
 	status = models.CharField(max_length=1, null=False, blank=False, choices=STATUS_CHOICES, default='d', verbose_name='Статус')
 	slug = models.SlugField(default='', db_index=True, unique=True, verbose_name='URL-aдрес(Cлаг)', help_text='Ссылка, например: about')
-	title = models.CharField(max_length=50, unique=True, verbose_name='Название')
-	author = models.ForeignKey(Author, on_delete=models.PROTECT, null=True, blank=True, verbose_name='Выберете автора')
+	title = models.CharField(max_length=50, unique=True, verbose_name='Название статьи')
+	author = models.ForeignKey(Author, on_delete=models.PROTECT, null=True, blank=True, verbose_name='Автор')
 	description = models.TextField(max_length=500, null=False, blank=False, verbose_name='Краткое описание')
 	content = HTMLField(default='', null=False, blank=False, verbose_name='Содержание')
-	rubric = models.ForeignKey('Rubric', default='', on_delete=models.PROTECT, verbose_name='Рубрики')
+	rubric = models.ForeignKey('Rubric', default='', on_delete=models.PROTECT, verbose_name='Рубрика')
 	creation_date = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Дата создания')
 	edit_date = models.DateTimeField(db_index=True, verbose_name='Дата редактирования')
 	published = models.DateTimeField(db_index=True, blank=True, null=True, verbose_name='Дата публикации')
@@ -56,6 +62,14 @@ class Article(models.Model):
 		extensions=['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
 		format='image',
 		blank=True
+	)
+	user = models.ForeignKey(
+		settings.AUTH_USER_MODEL,
+		on_delete=models.SET(get_sentinel_user),
+		default=get_user_model().objects.get_or_create(username='admin'),
+		null=False,
+		blank=False,
+		verbose_name='Пользователь',
 	)
 
 	class Meta:
@@ -68,6 +82,8 @@ class Article(models.Model):
 		self.old_status = self.status
 
 	def save(self, *args, **kwargs):
+		super().save(*args, **kwargs)
+		print(args, kwargs)
 		self.edit_date = datetime.now(tz=get_current_timezone())
 		if self.status == 'p' and self.old_status == 'd':
 			self.published = datetime.now(tz=get_current_timezone())
@@ -80,3 +96,9 @@ class Article(models.Model):
 
 	def get_absolute_url(self):
 		return f'/novosti-obiteli/{self.rubric.slug}/{self.slug}/'
+
+	def _get_full_name(self):
+		"Returns the person's full name."
+		return '%s %s' % (self.user.first_name, self.user.last_name)
+
+	user_full_name = property(_get_full_name)

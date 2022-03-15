@@ -66,9 +66,9 @@ class Article(models.Model):
 	user = models.ForeignKey(
 		settings.AUTH_USER_MODEL,
 		on_delete=models.SET(get_sentinel_user),
+		default=get_user_model().objects.get_or_create(username='admin')[0],
 		null=False,
-		blank='',
-		default='',
+		blank=False,
 		verbose_name='Пользователь',
 	)
 

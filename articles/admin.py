@@ -48,11 +48,14 @@ class ArticleAdmin(admin.ModelAdmin):
 		super().save_model(request, obj, form, change)
 
 	def user_link(self, obj):
-		url = reverse('admin:auth_user_change', args=(obj.user_id,))
-		if obj.user.last_name or obj.user.first_name:
-			return format_html("<a href='{}'>{} {}</a>", url, obj.user.first_name, obj.user.last_name,)
+		if obj.user_id:
+			url = reverse('admin:auth_user_change', args=(obj.user_id,))
+			if obj.user.last_name or obj.user.first_name:
+				return format_html("<a href='{}'>{} {}</a>", url, obj.user.first_name, obj.user.last_name,)
+			else:
+				return format_html("<a href='{}'>{}</a>", url, obj.user)
 		else:
-			return format_html("<a href='{}'>{}</a>", url, obj.user)
+			return format_html("<p>{}</p>", 'Нет пользователя')
 
 	user_link.short_description = "Пользователь"
 

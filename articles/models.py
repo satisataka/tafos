@@ -67,7 +67,8 @@ class Article(models.Model):
 		settings.AUTH_USER_MODEL,
 		on_delete=models.SET(get_sentinel_user),
 		null=False,
-		default=None,
+		blank='',
+		default='',
 		verbose_name='Пользователь',
 	)
 

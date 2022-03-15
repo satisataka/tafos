@@ -48,6 +48,7 @@ urlpatterns = [
 	path('grappelli/', include('grappelli.urls')),
 	path('tinymce/', include('tinymce.urls')),
 	path('admin1482839/', admin.site.urls),
+	path('robots.txt', include('robots.urls')),
 	path('sitemap.xml', sitemap_view.index, {'sitemaps': sitemaps}),
 	path('sitemap-<section>.xml', sitemap_view.sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 	path('novosti-obiteli/', include('articles.urls', namespace='articles'), name='articles'),

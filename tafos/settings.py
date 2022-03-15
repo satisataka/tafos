@@ -32,7 +32,7 @@ INSTALLED_APPS = [
 	'articles.apps.ArticlesConfig',
 	'flatpage_tafos.apps.FlatpageTafosConfig',
 	'tinymce',
-
+	'robots'
 ]
 
 MIDDLEWARE = [
@@ -209,6 +209,7 @@ FILEBROWSER_EXTENSIONS = {
 GRAPPELLI_INDEX_DASHBOARD = 'tafos.dashboard.CustomIndexDashboard'
 GRAPPELLI_ADMIN_TITLE = 'Введенский храм'
 GRAPPELLI_CLEAN_INPUT_TYPES = False
+GRAPPELLI_SWITCH_USER = True
 
 # secure settings
 SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', False)

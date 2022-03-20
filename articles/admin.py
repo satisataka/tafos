@@ -55,7 +55,7 @@ class ArticleAdmin(admin.ModelAdmin):
 			else:
 				return format_html("<a href='{}'>{}</a>", url, obj.user)
 		else:
-			return format_html("<p>{}</p>", 'Нет пользователя')
+			return format_html("<p>{}</p>", '-----')
 
 	user_link.short_description = "Пользователь"
 

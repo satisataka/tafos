@@ -45,16 +45,67 @@ class Article(models.Model):
 		('d', 'Черновик'),
 		('p', 'Опубликовано'),
 	)
-	status = models.CharField(max_length=1, null=False, blank=False, choices=STATUS_CHOICES, default='d', verbose_name='Статус')
-	slug = models.SlugField(default='', db_index=True, unique=True, verbose_name='URL-aдрес(Cлаг)', help_text='Ссылка, например: about')
-	title = models.CharField(max_length=50, unique=True, verbose_name='Название статьи')
-	author = models.ForeignKey(Author, on_delete=models.PROTECT, null=True, blank=True, verbose_name='Автор')
-	description = models.TextField(max_length=500, null=False, blank=False, verbose_name='Краткое описание')
-	content = HTMLField(default='', null=False, blank=False, verbose_name='Содержание')
-	rubric = models.ForeignKey('Rubric', default='', on_delete=models.PROTECT, verbose_name='Рубрика')
-	creation_date = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Дата создания')
-	edit_date = models.DateTimeField(db_index=True, null=True, verbose_name='Дата редактирования')
-	published = models.DateTimeField(db_index=True, null=True, verbose_name='Дата публикации')
+
+	status = models.CharField(
+		max_length=1,
+		null=False,
+		blank=False,
+		choices=STATUS_CHOICES,
+		default='d',
+		verbose_name='Статус'
+	)
+	title = models.CharField(
+		max_length=50,
+		unique=True,
+		verbose_name='Название статьи'
+	)
+	slug = models.SlugField(
+		db_index=True,
+		unique=True,
+		default='',
+		verbose_name='URL-aдрес(Cлаг)',
+		help_text='Ссылка, например: about'
+	)
+	author = models.ForeignKey(
+		Author,
+		on_delete=models.PROTECT,
+		null=True,
+		blank=True,
+		verbose_name='Автор'
+	)
+	description = models.TextField(
+		max_length=500,
+		null=False,
+		blank=False,
+		verbose_name='Краткое описание'
+	)
+	content = HTMLField(
+		default='',
+		null=False,
+		blank=False,
+		verbose_name='Содержание'
+	)
+	rubric = models.ForeignKey(
+		Rubric,
+		default='',
+		on_delete=models.PROTECT,
+		verbose_name='Рубрика'
+	)
+	creation_date = models.DateTimeField(
+		auto_now_add=True,
+		db_index=True,
+		verbose_name='Дата создания'
+	)
+	edit_date = models.DateTimeField(
+		db_index=True,
+		null=True,
+		verbose_name='Дата редактирования'
+	)
+	published = models.DateTimeField(
+		db_index=True,
+		null=True,
+		verbose_name='Дата публикации'
+	)
 	image = FileBrowseField(
 		"Обложка статьи",
 		max_length=200,
@@ -81,8 +132,6 @@ class Article(models.Model):
 		self.old_status = self.status
 
 	def save(self, *args, **kwargs):
-		super().save(*args, **kwargs)
-		print(args, kwargs)
 		self.edit_date = datetime.now(tz=get_current_timezone())
 		if self.status == 'p' and self.old_status == 'd':
 			self.published = datetime.now(tz=get_current_timezone())

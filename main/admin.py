@@ -7,7 +7,6 @@ from .models import Сarousel
 class СarouselAdmin(admin.ModelAdmin):
 	list_display = ('title', 'order')
 	list_display_links = ('title',)
-	list_editable = ('order',)
 
 	formfield_overrides = {
 		models.TextField: {'widget': TinyMCE(

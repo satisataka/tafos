@@ -15,7 +15,7 @@ class MenuItemView(ListView):
 	def get_queryset(self):
 		qs = self.model.objects.all()
 		if self.kwargs.get('menu'):
-			qs = qs.filter(menu__slug=self.kwargs['menu'])
+			qs = qs.filter(hide=False, menu__slug=self.kwargs['menu'])
 		return qs
 
 	def get_context_data(self, **kwargs):

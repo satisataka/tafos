@@ -55,10 +55,6 @@ urlpatterns = [
 	path('donate/', TemplateView.as_view(template_name='main/donate.html'), name='donate'),
 	path('worship/timetable/', include('timetable.urls', namespace='timetable'), name='timetable'),
 	path('contacts/virtual/', RedirectView.as_view(url='http://vt.fvp.su/Ryzhevo/Ryzhevo.html'), name='virtual'),
+	path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
 	path('', include('main.urls', namespace='main'), name='main'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-if not DEBUG:
-	urlpatterns += [
-		path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
-	]

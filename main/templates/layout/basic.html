@@ -122,7 +122,7 @@
 							{% endif %}
 							{% if crumb.menu_item_slug%}
 								{% if crumb.current_path %}
-									<li class="breadcrumb-item"><a href="/{{ crumb.menu_slug }}/{{crumb.menu_item_slug}}">{{ crumb.menu_item_name }}</a></li>
+									<li class="breadcrumb-item"><a href="/{{ crumb.menu_slug }}/{{crumb.menu_item_slug}}/">{{ crumb.menu_item_name }}</a></li>
 								{% else %}
 									<li class="breadcrumb-item active" aria-current="page">{{ crumb.menu_item_name }}</li>
 								{% endif %}

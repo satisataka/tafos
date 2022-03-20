@@ -24,7 +24,6 @@ from django.contrib.sitemaps import views as sitemap_view
 from django.views.generic.base import RedirectView
 
 import tafos.sitemaps as sitemaps
-from tafos.settings import DEBUG
 
 sitemaps = {
 	'MainPage': sitemaps.MainPageSitemap,
@@ -53,8 +52,8 @@ urlpatterns = [
 	path('sitemap-<section>.xml', sitemap_view.sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 	path('novosti-obiteli/', include('articles.urls', namespace='articles'), name='articles'),
 	path('donate/', TemplateView.as_view(template_name='main/donate.html'), name='donate'),
+	path('school/', views.flatpage, {'url': '/school/'}, name='school'),
 	path('worship/timetable/', include('timetable.urls', namespace='timetable'), name='timetable'),
 	path('contacts/virtual/', RedirectView.as_view(url='http://vt.fvp.su/Ryzhevo/Ryzhevo.html'), name='virtual'),
-	path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
 	path('', include('main.urls', namespace='main'), name='main'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

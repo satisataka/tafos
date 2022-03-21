@@ -20,7 +20,7 @@ class TimeTable(models.Model):
 
 	class Meta:
 		verbose_name = ''
-		verbose_name_plural = 'Расписание'
+		verbose_name_plural = 'Всё рассписание'
 		ordering = ['day']
 
 	def day_of_week(self):
@@ -36,9 +36,6 @@ class TimeTable(models.Model):
 		return RUSSIAN_DAY_WEEK_CHOOSE[self.day.weekday()]
 
 	day_of_week.short_description = "День недели"
-
-	def save(self, *args, **kwargs):
-		super(TimeTable, self).save(*args, **kwargs)
 
 	def __str__(self):
 		return str(self.day.strftime("%d.%m.%y")) + ' (' + self.day_of_week() + ')'

@@ -17,13 +17,11 @@ class CustomBarModelForm(forms.ModelForm):
 		self.fields['service'].queryset = ListChurchService.objects.filter(hide=False)
 
 
-class TimeTableItemInline(admin.StackedInline):
-	classes = ('grp-collapse grp-open',)
+class TimeTableItemInline(admin.TabularInline):
 	inline_classes = ('grp-collapse grp-open',)
 	form = CustomBarModelForm
 	model = TimeTableItem
 	formfield_overrides = {
-		# 'rows':20, 'cols':5
 		models.TimeField: {'widget': TimeInput(
 			format='%H:%M',
 			attrs={
@@ -81,6 +79,7 @@ class TimeTableAdmin(admin.ModelAdmin):
 	}
 
 	def view_service_link(self, obj):
+		print(obj.__dict__)
 		count = obj.timetableitem_set.count()
 		url = reverse("admin:timetable_listchurchservice_changelist")
 		if count % 10 == 0 or 11 <= count % 100 <= 14 or 5 <= count % 10 <= 9:

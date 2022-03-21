@@ -123,7 +123,7 @@ class Article(models.Model):
 	)
 
 	class Meta:
-		verbose_name_plural = 'Статьи'
+		verbose_name_plural = 'Все статьи'
 		verbose_name = 'Статья'
 		ordering = ['status', '-published', '-edit_date']
 

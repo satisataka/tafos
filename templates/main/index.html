@@ -11,7 +11,7 @@
 	<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 		<div class="carousel-inner">
 			{% for car in carousel %}
-			{% if car.order == 1 %}
+			{% if car.position == 0 %}
 			<div class="carousel-item active">
 			{% else %}
 			<div class="carousel-item">
@@ -21,7 +21,9 @@
 				</div>
 				<div class="carousel-caption p-2">
 					<div class="h1">{{ car.title|safe }}</div>
-					<a class="btn btn-carousel" href="{{ car.url }}">Подробнее</a>
+					{% if car.button %}
+						<a class="btn btn-carousel" href="{{ car.url }}">Подробнее</a>
+					{% endif %}
 				</div>
 			</div>
 			{% endfor %}

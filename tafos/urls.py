@@ -22,6 +22,7 @@ from django.contrib.flatpages import views
 from django.views.generic import TemplateView
 from django.contrib.sitemaps import views as sitemap_view
 from django.views.generic.base import RedirectView
+from .settings import DEBUG
 
 import tafos.sitemaps as sitemaps
 
@@ -56,5 +57,7 @@ urlpatterns = [
 	path('worship/timetable/', include('timetable.urls', namespace='timetable'), name='timetable'),
 	path('contacts/virtual/', RedirectView.as_view(url='http://vt.fvp.su/Ryzhevo/Ryzhevo.html'), name='virtual'),
 	path('', include('main.urls', namespace='main'), name='main'),
-	path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if not DEBUG:
+	path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),

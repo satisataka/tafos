@@ -60,4 +60,4 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if not DEBUG:
-	path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),
+	urlpatterns += path('<path:url>', views.flatpage, name='django.contrib.flatpages.views.flatpage'),

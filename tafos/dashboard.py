@@ -10,8 +10,6 @@ from django.utils.translation import gettext_lazy as _
 
 from grappelli.dashboard import modules, Dashboard
 from grappelli.dashboard.utils import get_admin_site_name
-from django.contrib.auth import get_user_model
-
 
 
 class CustomIndexDashboard(Dashboard):

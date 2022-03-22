@@ -178,6 +178,10 @@ TINYMCE_DEFAULT_CONFIG = {
 
 	'indentation': '20pt',
 	'indent_use_margin': True,
+
+	'relative_urls': False,
+	'remove_script_host': False,
+	'convert_urls': True,
 }
 
 TINYMCE_FILEBROWSER = True

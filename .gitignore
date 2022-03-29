@@ -133,6 +133,5 @@ dmypy.json
 .vscode/
 db.tafos
 media/
-migrations/
 /secret_key.txt
-/.env
+migrations/

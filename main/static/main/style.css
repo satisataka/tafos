@@ -223,6 +223,11 @@ footer {
 .logo-foot {
 	max-width: 400px;
 }
+
+.title-category .soсial-net {
+	color: #E8D1B1 !important;
+}
+footer .soсial-net .fa-youtube,
 footer .soсial-net .fa-vk,
 footer .soсial-net .fa-instagram {
 	color: var(--main-sand-color);

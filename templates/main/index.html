@@ -2,7 +2,17 @@
 {% load static %}
 {% block title %}Главная{% endblock %}
 
-{% block title_category %}<h1>Главная</h1>{% endblock %}
+{% block title_category %}
+
+
+<div class="d-flex">
+	<div class="bd-highlight me-auto " ><h1 style="font-size:calc(1.375rem + 1.5vw);">Главная</h1></div>
+	<div class="align-self-center justify-content-end mx-2"><a href="https://www.youtube.com/channel/UCWWQiBcgSvckek7dZjTYBcw" target="_blank"><i class="fab fa-youtube soсial-net" style="font-size:calc(1.375rem + 1.5vw);"></i></a></div>
+	<div class="align-self-center justify-content-end mx-2"><a href="https://vk.com/schoolgorlitsa" target="_blank"><i class="fab fa-vk soсial-net" style="font-size:calc(1.375rem + 1.5vw);"></i></a></div>
+	<div class="align-self-center justify-content-end mx-2"><a href="https://www.instagram.com/ryzhevohram/" target="_blank"><i class="fab fa-instagram soсial-net" style="font-size:calc(1.375rem + 1.5vw);"></i></a></div>
+</div>
+
+{% endblock %}
 
 {% block carousel %}
 

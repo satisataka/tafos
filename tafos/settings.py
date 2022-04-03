@@ -204,7 +204,7 @@ FILEBROWSER_VERSIONS = {
 	'open_graph': {'verbose_name': 'open_graph(1200x630px)', 'width': 1200, 'height': 630, 'opts': 'crop'},
 	'open_graph_vk': {'verbose_name': 'open_graph_vk(1200x536px)', 'width': 1200, 'height': 536, 'opts': 'crop'},
 }
-FILEBROWSER_ADMIN_VERSIONS = ['article', 'grayscale_processor']
+FILEBROWSER_ADMIN_VERSIONS = ['article']
 FILEBROWSER_EXTENSIONS = {
 	'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
 	'Document': ['.pdf', '.doc', '.rtf', '.txt', '.xls', '.csv'],

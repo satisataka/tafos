@@ -54,8 +54,8 @@
 
 {% block content %}
 <div class="row main-home">
-	<div class="home-news col-12 col-md-8 order-2 order-md-1">
-		<div class="header col-12 text-start mt-2 mt-md-0"><h2 class="fw-bold">Новости Обители</h2></div>
+	<div class="home-news mt-1 col-12 col-md-8 order-2 order-md-1 pe-md-5 ">
+		<div class="header col-12 text-start mt-2 mt-md-0"><p class="fw-bold h1">Новости Обители</p></div>
 		<div class='post-content'>
 			{% for article in news %}
 				<div class="cards row mb-2">
@@ -82,20 +82,18 @@
 			</div>
 			{% endfor %}
 		</div>
-		<div class="col-12 text-center my-2">
+		<div class="col-12 text-center pt-1">
 			<a class="btn btn-carousel" href="/novosti-obiteli/">Все новости</a>
 		</div>
-
 	</div>
 
-	<div class="home-timetable col-12 col-md-4 order-1 order-md-2">
-		<div class="row ">
-			<div class="header col-12 text-start "><h2 class="fw-bold mb-0">Расписание Богослужений</h2></div>
+	<div class="home-timetable mt-1 col-12 col-md-4 order-1 order-md-2 ps-md-5">
+		<div class="row mb-3 mb-md-0">
+			<div class="header col-12 text-start"><p class="fw-bold mb-0 h1">Расписание</p><span class="fw-bold mb-0 h3">Богослужений</span></div>
 			<div class="img-timetable mt-2">
 				<img src="{% static 'main/timetable.jpg' %}" alt="Рассписание">
 			</div>
 			<div class="col-12 my-2">
-
 				<div class="day-week col-12 text-center fw-bold fs-4">
 					Сегодня
 				</div>
@@ -139,14 +137,32 @@
 					</div>
 				{% endfor %}
 			</div>
-			<div class="col-12 text-center my-2">
+			<div class="col-12 text-center pt-3">
 				<a class="btn btn-carousel" href="/worship/timetable/">Подробнее</a>
 			</div>
 		</div>
-
 	</div>
 
 </div>
 
 
 {% endblock %}
+
+{% block content_2 %}
+<article class='mt-4 rounded-3'>
+<div class="main-content pb-3 my-2 mx-4 mx-md-5">
+<div class="row main-home">
+	<div class="home-news col-12 order-3 order-md-3 mt-3">
+		<div class="header col-12 text-start mb-2"><p class="fw-bold text-center h1">Пожертвовать</p></div>
+
+		<div class='ya-donate'>
+			<iframe src="https://yoomoney.ru/quickpay/shop-widget?writer=seller&targets=%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D0%A5%D1%80%D0%B0%D0%BC%20(%D1%81%D0%B5%D0%BB%D0%BE%20%D0%A0%D1%8B%D0%B6%D0%B5%D0%B2%D0%BE)&targets-hint=%D0%9E%D1%81%D1%82%D0%B0%D0%B2%D1%8C%D1%82%D0%B5%20%D1%81%D0%B2%D0%BE%D1%91%20%D0%B8%D0%BC%D1%8F%20%D0%B5%D1%81%D0%BB%D0%B8%20%D0%BF%D0%BE%D0%B6%D0%B5%D0%BB%D0%B0%D0%B5%D1%82%D0%B5.&default-sum=150&button-text=14&payment-type-choice=on&fio=on&hint=&successURL=&quickpay=shop&account=4100110354872380&" width="100%" height="244" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+		</div>
+		<p><span class="fst-italic">Внимание! Если Вы хотите пожертвовать на наш храм большую сумму, то лучше воспользуйтесь пожертвованием на наш храм через Банк.</span>
+		<a href="https://yoomoney.ru/to/4100110354872380" target="_blank" rel="noopener">Если по каким-то причинам вам не удаётся совершить пожертвование на сайте, воспользуетесь нашей визиткой ЮMoney</a>
+		</p>
+	</div>
+</div>
+</div>
+</article>
+{% endblock content_2 %}

@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from filebrowser.sites import site
+
 from django.contrib.flatpages import views
 from django.views.generic import TemplateView
 from django.contrib.sitemaps import views as sitemap_view
@@ -42,6 +43,8 @@ handler404 = 'main.views.custom_page_not_found_view'
 handler500 = 'main.views.custom_error_view'
 handler403 = 'main.views.custom_permission_denied_view'
 handler400 = 'main.views.custom_bad_request_view'
+
+print(site.urls)
 
 urlpatterns = [
 	path('admin/filebrowser/', site.urls),

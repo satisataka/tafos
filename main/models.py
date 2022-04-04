@@ -1,6 +1,7 @@
 from django.db import models
 from filebrowser.fields import FileBrowseField
 from django.core.exceptions import ValidationError
+from django.conf import settings
 
 
 class СarouselMaster(models.Model):
@@ -42,7 +43,7 @@ class Сarousel(models.Model):
 	image = FileBrowseField(
 		"Обложка",
 		max_length=200,
-		directory="carousel_cover/",
+		directory=settings.FILEBROWSER_DIRECTORY_CAROUSEL,
 		extensions=['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
 		format='image',
 		blank=False,

@@ -118,6 +118,16 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
 FILEBROWSER_DIRECTORY = 'uploads/'
+FILEBROWSER_DIRECTORY_ARTICLES_COVER = 'обложки_для_статей/'
+FILEBROWSER_DIRECTORY_FLATPAGES_COVER = 'картинки_для_статических_статей/'
+FILEBROWSER_DIRECTORY_CAROUSEL = 'картинки_для_карусели/'
+FILEBROWSER_DIRECTORY_NAVBAR_COVER = 'обложки_разделов_сайта/'
+
+FILEBROWSER_VERSION_PROCESSORS = [
+	'filebrowser.utils.scale_and_crop',
+	'tafos.utils.water_marks_processor',
+]
+
 DIRECTORY = ''
 
 ARTICLE_PAGINATE_BY = 10
@@ -167,7 +177,7 @@ TINYMCE_DEFAULT_CONFIG = {
 	],
 	'nonbreaking_force_tab': True,
 	'quickbars_insert_toolbar': 'image media',
-	'quickbars_selection_toolbar': 'bold italic | aligncenter alignjustify | bullist | quicklink blockquote',
+	'quickbars_selection_toolbar': 'bold italic | aligncenter alignleft | bullist | quicklink blockquote',
 	# image setting
 	'image_caption': True,
 	'quickbars_image_toolbar': False,
@@ -199,7 +209,7 @@ FILEBROWSER_VERSIONS = {
 	'admin_thumbnail': {'verbose_name': 'Миниатюра (60x60)', 'width': 60, 'height': 60, 'opts': 'crop'},
 	'thumbnail': {'verbose_name': 'Миниатюра (60x60)', 'width': 60, 'height': 60, 'opts': 'crop'},
 	'cover': {'verbose_name': 'Для обложки (400px)', 'width': 500, 'height': '', 'opts': ''},
-	'article': {'verbose_name': 'Для статьи (750px)', 'width': 750, 'height': '', 'opts': ''},
+	'article': {'verbose_name': 'Для статьи (750px)', 'width': 750, 'height': '', 'water_marks': True, 'opts': ''},
 	'carousel': {'verbose_name': 'Для карусели (1920px)', 'width': 1920, 'height': '', 'opts': ''},
 	'open_graph': {'verbose_name': 'open_graph(1200x630px)', 'width': 1200, 'height': 630, 'opts': 'crop'},
 	'open_graph_vk': {'verbose_name': 'open_graph_vk(1200x536px)', 'width': 1200, 'height': 536, 'opts': 'crop'},

@@ -1,0 +1,36 @@
+# Your Favicon Package
+
+This package was generated with [RealFaviconGenerator](https://realfavicongenerator.net/) [v0.16](https://realfavicongenerator.net/change_log#v0.16)
+
+## Install instructions
+
+To install this package:
+
+Extract this package in <code>&lt;web site&gt;/static/main/favicon/</code>. If your site is <code>http://www.example.com</code>, you should be able to access a file named <code>http://www.example.com/static/main/favicon/favicon.ico</code>.
+
+Insert the following code in the `head` section of your pages:
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/main/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/main/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/main/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/main/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/main/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/main/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/main/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/main/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/main/favicon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/main/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="194x194" href="/static/main/favicon/favicon-194x194.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/main/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/main/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/main/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/static/main/favicon/safari-pinned-tab.svg" color="#306048">
+    <link rel="shortcut icon" href="/static/main/favicon/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Введенский Храм">
+    <meta name="application-name" content="Введенский Храм">
+    <meta name="msapplication-TileColor" content="#306048">
+    <meta name="msapplication-TileImage" content="/static/main/favicon/mstile-144x144.png">
+    <meta name="msapplication-config" content="/static/main/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+*Optional* - Check your favicon with the [favicon checker](https://realfavicongenerator.net/favicon_checker)

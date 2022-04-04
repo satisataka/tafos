@@ -1,6 +1,6 @@
 from django.db import models
 from filebrowser.fields import FileBrowseField
-
+from django.conf import settings
 
 class Menu(models.Model):
 	name = models.CharField(db_index=True, unique=True, max_length=50, verbose_name='Название', help_text='Название должно быль уникальным')
@@ -31,7 +31,7 @@ class MenuItem(models.Model):
 	image = FileBrowseField(
 		"Изображение",
 		max_length=200,
-		directory="menu_images_cover/",
+		directory=settings.FILEBROWSER_DIRECTORY_NAVBAR_COVER,
 		extensions=['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
 		format='image',
 		blank=True

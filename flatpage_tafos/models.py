@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.flatpages.models import FlatPage
 from filebrowser.fields import FileBrowseField
+from django.conf import settings
 
 
 class NewFlatpage(models.Model):
@@ -8,7 +9,7 @@ class NewFlatpage(models.Model):
 	image = FileBrowseField(
 		"Обложка",
 		max_length=200,
-		directory="flatpages_images/",
+		directory=settings.FILEBROWSER_DIRECTORY_FLATPAGES_COVER,
 		extensions=['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.bmp', '.webp'],
 		format='image',
 		blank=True

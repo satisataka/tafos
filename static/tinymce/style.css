@@ -1,0 +1,76 @@
+@font-face {
+	font-family: 'balkara';
+	src: url(/static/fonts/BalkaraFreeCondensed.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+:root {
+	--main-green-color-dark: #1e372d;
+	--main-green-color-mid: #1F4533;
+	--main-green-color-light: #306048;
+	--main-sand-color: #d1ac77;
+}
+#tinymce{
+	margin: 2%;
+}
+#tinymce blockquote {
+	background: #f4f2ec;
+	border-radius: 12px;
+	position: relative;
+	padding: 16px 5% 5px 5%;
+	margin: 20px 5%;
+	font-size: 16px;
+	text-align: center;
+}
+#tinymce blockquote:before,
+#tinymce blockquote:after {
+	position: absolute;
+	color: var(--main-green-color-light);
+	font-size: 100px;
+	font-family: 'balkara', 'Times New Roman', Times, serif;
+	line-height: 100px;
+}
+#tinymce blockquote:before {
+	content: '“';
+	left: -30px;
+	top: -15px;
+}
+#tinymce blockquote:after {
+	content: '”';
+	right: -30px;
+	bottom: -85px;
+}
+#tinymce .text-justify {
+	text-align: justify;
+}
+#tinymce a{
+	color: #c7a06a;
+}
+#tinymce iframe{
+	margin: auto;
+	max-width: 600px;
+	text-align: center;
+}
+#tinymce figure{
+	margin: 1rem auto;
+	max-width: 750px;
+	overflow: hidden;
+	position: relative;
+}
+#tinymce img{
+	width: 100%;
+	max-width: 750px;
+	height: auto;
+	position: relative;
+	z-index: 1;
+	border-radius: 5px;
+	margin: auto;
+}
+#tinymce figure figcaption{
+	text-align: center;
+	margin: auto;
+	display: block;
+	width: 90%;
+	text-align: center;
+	padding: 3px 0;
+}

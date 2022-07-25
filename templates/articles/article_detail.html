@@ -26,9 +26,6 @@
 {% block content %}
 <div class='post-content'>
 	<h1 class='title-article text-center my-3'>{{ article.title }}</h1>
-	<div class="row m-3">
-		<time class="col-auto mx-auto time">{{ article.published|date:"H:i, d E Yг." }}</time>
-	</div>
 	{% if article.image %}
 	<div class="cover text-center p-3 my-3">
 		{% load fb_versions %}
